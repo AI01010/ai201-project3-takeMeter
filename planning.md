@@ -33,7 +33,7 @@ For ties: 50/50 try key-word searches to aid in decision and if that deosnt work
 
 Stretch goals:
 - Inter-annotator reliability: Have at least one other person label 30+ of your examples independently, and report your agreement rate (Cohen's kappa or simple percentage agreement). Analyze where you disagreed. 
->> Use Claude Code, Codex, and Copilot to label the data and compare the results with your own labels. Have prompts and separate folder for each model's labels. Report the agreement rate and analyze where you disagreed.
+>> Use Claude Code, Codex, Copilot, and Groq to label the data and compare the results with your own labels. Have prompts and separate folder for each model's labels. Report the agreement rate and analyze where you disagreed.
 
 - Confidence calibration: Report whether your model's confidence scores are meaningful — does a 90% confident prediction actually get it right more often than a 60% confident one?
 - Error pattern analysis: Go beyond listing individual wrong predictions — identify a systematic pattern in the errors (e.g., "the model consistently misclassifies sarcastic posts" or "it can't distinguish X from Y when the post is short").
@@ -44,4 +44,45 @@ Specs and requirements:
  - workflow: You must use a workflow that includes data collection, annotation, model fine-tuning, and evaluation. You can use any tools you want, but you must document your workflow in your README.
  - return label prediction on a "take"
 
+Finalized trainable taxonomy (decision, 2026-06-24):
+The model trains on FOUR mutually-exclusive labels — analysis, hot_take, reaction, mixed
+— defined in taxonomy.json (the shared config used by the notebook, web app, and prompts).
+- "popular" was dropped from the trainable set: it depends on engagement/response counts,
+  which the text classifier cannot observe, so it cannot be learned from text alone.
+- "unlabeled" became a "skip" option in the labeling UI only (unreadable / off-topic /
+  non-English). It is filtered out before training, not predicted.
+This keeps us inside the spec's 2–4 label requirement and ensures every class is learnable
+from the post text.
+
+Data collection (executed):
+- Source strategy: best-effort scrape of public r/soccer-style listings (r/soccer, r/MLS,
+  r/footballtactics, r/PremierLeague JSON) via data/build_dataset.py, with a hand-authored
+  curated corpus (data/curated_examples.py, ~205 realistic posts) as fallback/supplement to
+  guarantee 200 examples even offline. Output: data/examples_to_label.csv (label blank).
+- Underrepresentation plan: the web Train page shows live per-label counts; if any class
+  trails after a first pass, collect/curate more of that class before training. The notebook
+  warns if any single label exceeds 70% of the set.
+
+AI Tool Plan:
+- Label stress-testing: had an LLM generate boundary posts between analysis/hot_take and
+  reaction/mixed; the genuinely ambiguous ones live in the EDGE/curated set and sharpened
+  the decision rules above.
+- Annotation assistance: pre-label all 200 with Claude Code, Codex, and Copilot using the
+  prompts in prompts/ (each writes labels/<model>/labeled.csv). Every pre-label is reviewed
+  and corrected by hand in the web Train page; the reviewed labels/human/labeled.csv is the
+  only file used for training. Disclosed in the README AI-usage section.
+- Failure analysis: after evaluation, paste the misclassified test examples into an LLM to
+  surface patterns (label pair confused, post length, sarcasm), then verify each pattern by
+  re-reading the examples before writing it up.
+
 Evaluation:
+- Metrics: overall accuracy (headline, comparable to the Groq baseline) PLUS macro-F1 and
+  per-class precision/recall/F1, because the classes are imbalanced and subjective — accuracy
+  alone would hide a class the model ignores. A confusion matrix shows WHICH boundary fails
+  (e.g. analysis→hot_take) and in which direction.
+- Baseline: zero-shot llama-3.3-70b via Groq on the same locked test set, so fine-tuning's
+  gain is measured honestly.
+- Definition of "good enough": fine-tuned model beats the zero-shot baseline on both accuracy
+  and macro-F1, reaches macro-F1 ≥ 0.65 with every per-class F1 ≥ 0.50 (no dead class), and on
+  the hardest boundary (analysis vs hot_take) confuses them in < 30% of that pair's cases.
+  Below that, the labels or data — not the training setup — are what to fix.

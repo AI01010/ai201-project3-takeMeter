@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}TakeMeter — Label data{% endblock %}
+{% block nav_train %}active{% endblock %}
+
+{% block content %}
+<section class="panel train">
+  <div class="train-head">
+    <h1>Label the training set</h1>
+    <div class="train-stats">
+      <span id="progress-text">0 / {{ total }}</span>
+      <div class="progressbar"><div id="progress-fill"></div></div>
+    </div>
+  </div>
+
+  <div class="counts" id="counts"></div>
+
+  <div class="card" id="card">
+    <div class="card-meta">
+      <span id="card-index">—</span>
+      <span class="src" id="card-source"></span>
+      <span class="cur-label" id="card-current"></span>
+    </div>
+    <p class="card-text" id="card-text">Loading…</p>
+    <input id="card-notes" class="notes" type="text" placeholder="notes for this example (optional — difficult-case reasoning)">
+  </div>
+
+  <div class="label-buttons" id="label-buttons"></div>
+
+  <div class="nav-buttons">
+    <button id="prev-btn" class="ghost">← Prev <span class="kbd">←</span></button>
+    <button id="next-unlabeled-btn" class="ghost">Next unlabeled <span class="kbd">Tab</span></button>
+    <button id="next-btn" class="ghost">Next → <span class="kbd">→</span></button>
+    <span class="spacer"></span>
+    <a id="export-btn" class="primary" href="/api/export">Export labeled.csv</a>
+  </div>
+
+  <p class="help">
+    Keyboard: <span class="kbd">1</span>/<span class="kbd">a</span> analysis ·
+    <span class="kbd">2</span>/<span class="kbd">h</span> hot_take ·
+    <span class="kbd">3</span>/<span class="kbd">r</span> reaction ·
+    <span class="kbd">4</span>/<span class="kbd">m</span> mixed ·
+    <span class="kbd">0</span>/<span class="kbd">s</span> skip ·
+    <span class="kbd">←</span>/<span class="kbd">→</span> move · labels auto-save & advance.
+  </p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>window.TAXONOMY = {{ taxonomy | tojson }};</script>
+<script src="{{ url_for('static', filename='train.js') }}"></script>
+{% endblock %}

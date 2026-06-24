@@ -1,0 +1,13 @@
+# ── Core (required to run the web app) ──────────────────────────────
+Flask>=3.0
+python-dotenv>=1.0
+
+# ── Optional: zero-shot Groq backend on the Test page ───────────────
+# Needs GROQ_API_KEY in the repo-root .env (already gitignored).
+groq>=0.11
+
+# ── Optional: serve YOUR fine-tuned model on the Test page ──────────
+# Only needed if you exported a model into web/model/ from the notebook.
+# These are large (~1 GB with torch); install only when you have a model.
+# transformers>=4.44
+# torch>=2.2

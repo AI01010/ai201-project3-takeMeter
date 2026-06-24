@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}TakeMeter{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}">⚽ TakeMeter</a>
+    <nav>
+      <a href="{{ url_for('index') }}" class="{% block nav_test %}{% endblock %}">Test a post</a>
+      <a href="{{ url_for('train') }}" class="{% block nav_train %}{% endblock %}">Label data</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="foot">
+    AI201 · Project 3 — football discourse classifier ·
+    labels: <code>analysis</code> · <code>hot_take</code> · <code>reaction</code> · <code>mixed</code>
+  </footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

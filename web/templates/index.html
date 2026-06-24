@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}TakeMeter — Test a post{% endblock %}
+{% block nav_test %}active{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <h1>What kind of take is this?</h1>
+  <p class="sub">Paste a football (soccer) post and TakeMeter predicts whether it's
+    <b>analysis</b>, a <b>hot take</b>, a <b>reaction</b>, or <b>mixed</b> — with a confidence score.</p>
+
+  <div class="backend-badge" id="backend-badge" data-backend="{{ backend }}">
+    backend: <b>{{ backend }}</b>
+    {% if backend == 'heuristic' %}<span class="hint">(no trained model loaded — export one into <code>web/model/</code> for real predictions)</span>{% endif %}
+    {% if backend == 'groq' %}<span class="hint">(zero-shot LLM — label only, no calibrated confidence)</span>{% endif %}
+    {% if backend == 'model' %}<span class="hint">(your fine-tuned DistilBERT)</span>{% endif %}
+  </div>
+
+  <textarea id="post" rows="5" placeholder="e.g. Pep is overrated, anyone could win with that budget. Change my mind."></textarea>
+
+  <div class="row">
+    <button id="classify-btn" class="primary">Classify <span class="kbd">Ctrl ↵</span></button>
+    <button id="clear-btn" class="ghost">Clear</button>
+    <span class="examples-label">try:</span>
+    <span class="chips" id="example-chips"></span>
+  </div>
+
+  <div id="result" class="result hidden">
+    <div class="verdict">
+      <span class="verdict-label" id="verdict-label">—</span>
+      <span class="verdict-conf" id="verdict-conf"></span>
+    </div>
+    <div class="bars" id="bars"></div>
+    <p class="note" id="result-note"></p>
+  </div>
+</section>
+
+<section class="panel definitions">
+  <h2>Label definitions</h2>
+  <ul id="defs"></ul>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>window.TAXONOMY = {{ taxonomy | tojson }};</script>
+<script src="{{ url_for('static', filename='test.js') }}"></script>
+{% endblock %}

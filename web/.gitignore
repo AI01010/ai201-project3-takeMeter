@@ -1,0 +1,6 @@
+# Ignore the (large) exported model weights, but keep the folder + its README.
+model/*
+!model/README.md
+
+__pycache__/
+*.pyc
