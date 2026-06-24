@@ -1,4 +1,4 @@
 # gitignore file
-venv/
+.venv/
 
 .env
