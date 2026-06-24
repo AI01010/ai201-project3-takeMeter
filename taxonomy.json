@@ -1,0 +1,43 @@
+{
+  "community": "r/soccer-style football discourse (World Cup, MLS, clubs)",
+  "train_labels": ["analysis", "hot_take", "reaction", "mixed"],
+  "label_map": {
+    "analysis": 0,
+    "hot_take": 1,
+    "reaction": 2,
+    "mixed": 3
+  },
+  "skip_label": "skip",
+  "definitions": {
+    "analysis": "A structured argument backed by specific, verifiable evidence — statistics, historical comparison, or tactical observation. The post reasons toward a conclusion rather than just asserting one.",
+    "hot_take": "A bold, confident opinion stated without supporting evidence. The claim might be true, but the post asserts rather than argues; often contrarian or provocative.",
+    "reaction": "An immediate emotional response to a specific, recent event (within roughly a month). Little to no argument — the post is expressing a feeling in the moment.",
+    "mixed": "A genuine combination of two or more of the above — e.g. an emotional reaction that also carries a real argument, or a hot take partly propped up by a stat. Use only when no single label clearly dominates."
+  },
+  "decision_rules": [
+    "If the post gives specific, verifiable evidence that would stand even with the opinion framing removed → analysis.",
+    "If the evidence is vague, cherry-picked, or decorative (just enough to sound credible) → hot_take.",
+    "If it is an in-the-moment emotional response to a recent event with no real argument → reaction.",
+    "If it genuinely blends an emotional reaction with a real argument and neither dominates → mixed.",
+    "Ties / 50-50 cases: try keyword cues first; if still unresolved, label mixed.",
+    "'skip' is a labeling-UI option only (unreadable, off-topic, or not English) and is NOT a training class. 'popular' was dropped from the trainable taxonomy because it depends on engagement counts the text model cannot see."
+  ],
+  "examples": {
+    "analysis": [
+      "City’s build-up has changed: Rodri drops between the CBs, the fullbacks invert, and that’s why their PPDA fell from 11.2 to 8.7 — they win the ball 10 yards higher up.",
+      "Haaland’s npxG is 0.78/90 but he’s finishing at 1.05/90 over 12 games. That overperformance regresses; expecting 30+ league goals again is reading variance as skill."
+    ],
+    "hot_take": [
+      "Messi in MLS is just a marketing stunt, he’s washed and Miami would be mid without the hype. Change my mind.",
+      "Pep is overrated. Anyone can win with that budget."
+    ],
+    "reaction": [
+      "I AM SHAKING. 97th minute winner in the derby I cannot breathe right now.",
+      "Heartbroken. Don’t talk to me, we threw away a 2-0 lead again."
+    ],
+    "mixed": [
+      "Gutted we lost but honestly the xG was 0.4 to 2.1, we got battered and deserved nothing — same midfield problem all season.",
+      "I’m hyped but let’s be real: beating a 10-man side 1-0 at home after 3 losses doesn’t fix the defensive line that’s leaked 9 goals in 4 games."
+    ]
+  }
+}
