@@ -1,0 +1,3 @@
+# Local tooling (data scripts). The web app has its own web/requirements.txt and
+# the Colab notebook installs its own deps at the top.
+requests>=2.31      # optional — enables scraping in data/build_dataset.py
