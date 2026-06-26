@@ -73,6 +73,23 @@ function render() {
   $("card-index").textContent = `#${i + 1} of ${examples.length} · id ${e.id}`;
   $("card-source").textContent = e.source || "";
   $("card-text").textContent = e.text;
+
+  // optional Groq context hint (sarcasm / verifiable claim) to aid labeling
+  const hintEl = $("card-hint");
+  if (e.hint) {
+    const sar = e.hint.sarcasm
+      ? '<span class="hint-badge warn">⚠ likely sarcastic</span>'
+      : '<span class="hint-badge ok">not sarcastic</span>';
+    const ver = e.hint.verifiable
+      ? '<span class="hint-badge ok">✓ checkable claim</span>'
+      : '<span class="hint-badge">no checkable claim</span>';
+    const note = e.hint.note ? `<span class="hint-note">${e.hint.note}</span>` : "";
+    hintEl.innerHTML = `<span class="hint-label">context (Groq, review):</span> ${sar} ${ver} ${note}`;
+    hintEl.classList.remove("hidden");
+  } else {
+    hintEl.classList.add("hidden");
+  }
+
   $("card-notes").value = e.notes || "";
   const cur = $("card-current");
   cur.textContent = e.label ? e.label.replace("_", " ") : "unlabeled";

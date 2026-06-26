@@ -42,6 +42,17 @@ results to `labels/claude/labeled.csv`.
 - All-caps and emoji alone signal reaction, but reaction + a substantive critique = mixed.
 - Don't reward topic. A post *about* tactics that only asserts is still hot_take.
 
+## Use outside knowledge as context (don't take posts at face value)
+- **Sarcasm:** if a post praises something but clearly means the opposite
+  (*"world class defending that, well done"*), label by real intent — usually
+  `reaction` or `hot_take`, not `analysis`.
+- **Factuality:** `analysis` needs *specific, checkable* evidence. If a cited "stat"
+  is vague, made-up, or cherry-picked just to sound credible, it's decorative → `hot_take`.
+  Use what you know about football to judge whether the claim is the kind of thing that
+  could be verified — not whether you can confirm the exact figure.
+- Add a `notes` mention when sarcasm or a dubious stat drove your decision (it helps the
+  human reviewer and feeds the hard-cases write-up).
+
 ## Output
 Write `labels/claude/labeled.csv` with **exactly** these columns:
 

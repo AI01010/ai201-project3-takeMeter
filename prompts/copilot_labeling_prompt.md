@@ -35,6 +35,12 @@ batches of posts as `id<TAB>text`. For each, return one line: `id,label,confiden
 - Emotion + a substantive critique = **mixed**, not reaction.
 - A post *about* tactics that only asserts is **hot_take**, not analysis.
 
+## Use outside knowledge as context
+- **Sarcasm:** label by real intent — ironic praise ("world class defending, well done")
+  is **reaction**/**hot_take**, not analysis.
+- **Verifiability:** **analysis** needs a *specific, checkable* claim. A vague/made-up/
+  cherry-picked stat used to sound credible is decorative → **hot_take**.
+
 ## Output rules
 - One CSV line per input id, **in the same order**: `id,label,confidence,rationale`.
 - `label` lowercase, exact: `analysis|hot_take|reaction|mixed|skip`.

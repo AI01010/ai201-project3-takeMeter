@@ -29,7 +29,7 @@ except Exception:
     pass
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ANNOTATORS = ["human", "claude", "codex", "copilot"]
+ANNOTATORS = ["human", "claude", "codex", "copilot", "groq"]
 TRAIN_LABELS = ["analysis", "hot_take", "reaction", "mixed"]
 
 

@@ -35,17 +35,17 @@ Copy_of_..._starter_clean.ipynb   # Colab notebook: T4 fp16 training + joblib ba
 
 data/
   curated_examples.py             # ~205 hand-authored realistic posts (the offline corpus)
-  build_dataset.py                # scrapes public sources, falls back to curated -> 200 rows
+  build_dataset.py                # multi-source scraper (RSS + Reddit) + curated -> 200 rows
   examples_to_label.csv           # the 200 examples (label column blank — that's the work)
+  context_hints.csv               # (generated) per-example sarcasm/verifiable signals
 
-prompts/                          # labeling prompts for 3 models + the Groq baseline prompt
-  claude_labeling_prompt.md
-  codex_labeling_prompt.md
-  copilot_labeling_prompt.md
-  groq_baseline_prompt.md
+prompts/                          # labeling prompts for 4 models + the Groq baseline prompt
+  claude_labeling_prompt.md  codex_labeling_prompt.md
+  copilot_labeling_prompt.md  groq_labeling_prompt.md  groq_baseline_prompt.md
 
 labels/                           # one folder per annotator (inter-annotator reliability)
-  human/  claude/  codex/  copilot/
+  human/  claude/  codex/  copilot/  groq/
+  label_with_groq.py              # auto-labels with Groq + emits context_hints.csv
   compare_labels.py               # % agreement + Cohen's kappa across annotators
 
 web/                              # Flask app: Train (label) page + Test (classify) page
@@ -54,15 +54,28 @@ web/                              # Flask app: Train (label) page + Test (classi
 
 ## How to run it
 
-### 1. Build the 200-example set
+### 1. Build the 200-example set (multi-source)
 ```bash
 pip install requests                 # optional, enables scraping
-python data/build_dataset.py         # tries scraping public sources, fills from curated
-# python data/build_dataset.py --no-scrape   # curated only, fully offline
+python data/build_dataset.py         # blends real scraped posts + curated -> 200 rows
 ```
-Produces `data/examples_to_label.csv` (200 rows, `label` blank). In this environment
-Reddit blocks datacenter IPs (HTTP 403), so it fell back to the curated corpus; on a
-normal residential machine the scrape contributes real posts and the rest is curated.
+Sources (all best-effort, with a curated fallback so it never fails):
+- **rss** — football news/opinion feeds: ESPN, BBC, Sky (Football), Guardian, 90min
+  (non-football items filtered out; capped per feed for diversity)
+- **reddit_posts** / **reddit_comments** — r/soccer, r/MLS, r/footballtactics,
+  r/PremierLeague, r/championsleague, etc. (Reddit 403s datacenter IPs but works from a
+  normal machine; comments are the richest "takes")
+- **curated** — ~205 hand-authored realistic posts spanning all four labels
+
+By default at most 50% comes from scraped sources (`--real-frac`) so curated keeps every
+label represented. Useful flags:
+```bash
+python data/build_dataset.py --sources rss,curated     # pick sources
+python data/build_dataset.py --append --target 300     # GROW the set, keep existing labels
+python data/build_dataset.py --real-frac 0.7           # allow more real/scraped data
+python data/build_dataset.py --no-scrape               # curated only, fully offline
+```
+Produces `data/examples_to_label.csv` (`label` blank — that's the work).
 
 ### 2. Label the data (web Train page — fast, keyboard-driven)
 ```bash
@@ -73,15 +86,26 @@ Keys: `1`/`a` analysis · `2`/`h` hot_take · `3`/`r` reaction · `4`/`m` mixed 
 skip · `←`/`→` move. Labels auto-save to `labels/human/labeled.csv` and the page
 resumes where you left off. Click **Export labeled.csv** to download the training file.
 
-### 3. (Optional) Pre-label with 3 models, then compare
+### 3. (Optional) Pre-label with 4 models, then compare
 Run the prompts in [`prompts/`](prompts/) with Claude Code / Codex / Copilot → each
-writes `labels/<model>/labeled.csv`. Then:
+writes `labels/<model>/labeled.csv`. **Groq is fully automated:**
 ```bash
-python labels/compare_labels.py      # % agreement + Cohen's kappa vs your human labels
+pip install groq python-dotenv joblib
+python labels/label_with_groq.py     # labels all 200 in parallel (GROQ_API_KEY from .env)
+python labels/compare_labels.py      # % agreement + Cohen's kappa across all annotators
 ```
-This supports the **inter-annotator reliability** stretch goal. ⚠️ AI pre-labels are a
-starting point only — your reviewed `labels/human/` file is the ground truth that trains
-the model.
+The Groq run also writes `data/context_hints.csv` — per-example **sarcasm** and
+**verifiable-claim** signals that the web Train page displays to help you judge each post
+(addresses "use outside context to validate posts when labeling"). This supports the
+**inter-annotator reliability** stretch goal. ⚠️ All AI pre-labels are a starting point —
+your reviewed `labels/human/` file is the ground truth that trains the model.
+
+### Grow the dataset or add a label
+- **More examples:** `python data/build_dataset.py --append --target 300` adds fresh
+  unique posts while keeping every row and label you already have.
+- **A new label:** add it to `taxonomy.json` (`train_labels` + `label_map`) — the web app
+  buttons, the prompts' rubric, and the notebook's `LABEL_MAP` all key off the same four
+  labels, so update those three spots to keep them in sync, then re-label affected examples.
 
 ### 4. Fine-tune + evaluate (Colab)
 Open the notebook on a **T4 GPU** runtime, upload your `labeled.csv`, and run the

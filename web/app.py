@@ -26,6 +26,7 @@ import classifier
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 EXAMPLES_CSV = os.path.join(REPO, "data", "examples_to_label.csv")
+HINTS_CSV = os.path.join(REPO, "data", "context_hints.csv")
 HUMAN_DIR = os.path.join(REPO, "labels", "human")
 HUMAN_CSV = os.path.join(HUMAN_DIR, "labeled.csv")
 TAXONOMY = os.path.join(REPO, "taxonomy.json")
@@ -61,9 +62,28 @@ def load_labels() -> dict[str, dict]:
     return out
 
 
+def load_hints() -> dict[str, dict]:
+    """id -> {sarcasm, verifiable, note} context hints from Groq, if generated.
+
+    Produced by labels/label_with_groq.py. Shown on the Train page to help you
+    judge sarcasm / whether a claim is checkable — supports faster, better labels.
+    """
+    out: dict[str, dict] = {}
+    if os.path.isfile(HINTS_CSV):
+        with open(HINTS_CSV, newline="", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                out[str(r["id"])] = {
+                    "sarcasm": str(r.get("sarcasm", "")).strip().lower() == "true",
+                    "verifiable": str(r.get("verifiable", "")).strip().lower() == "true",
+                    "note": r.get("note", ""),
+                }
+    return out
+
+
 EXAMPLES = load_examples()
 EXAMPLE_TEXT = {e["id"]: e["text"] for e in EXAMPLES}
 LABELS = load_labels()           # mutable in-memory store, write-through to disk
+HINTS = load_hints()             # optional Groq context hints (sarcasm/verifiable)
 TAX = load_taxonomy()
 
 
@@ -104,12 +124,17 @@ def api_taxonomy():
 
 @app.route("/api/examples")
 def api_examples():
-    rows = [{**e, **LABELS.get(e["id"], {"label": "", "notes": ""})} for e in EXAMPLES]
+    rows = []
+    for e in EXAMPLES:
+        row = {**e, **LABELS.get(e["id"], {"label": "", "notes": ""})}
+        if e["id"] in HINTS:
+            row["hint"] = HINTS[e["id"]]
+        rows.append(row)
     counts: dict[str, int] = {}
     for r in rows:
         if r["label"]:
             counts[r["label"]] = counts.get(r["label"], 0) + 1
-    return jsonify({"examples": rows, "counts": counts,
+    return jsonify({"examples": rows, "counts": counts, "has_hints": bool(HINTS),
                     "labeled": sum(counts.values()), "total": len(rows)})
 
 

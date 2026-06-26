@@ -44,6 +44,13 @@ Set `confidence` honestly:
 - Emotion + real critique → `mixed`, not `reaction`. *"Buzzing but we had 31% possession and one shot, riding the keeper"* → `mixed`.
 - Tactics topic but pure assertion → `hot_take`, not `analysis`.
 
+## Use outside knowledge as context
+- **Sarcasm:** judge by real intent. Ironic praise (*"world class defending, well done"*)
+  is `reaction`/`hot_take`, never `analysis`.
+- **Verifiability:** `analysis` requires a *specific, checkable* claim. A vague/made-up/
+  cherry-picked stat used just to sound credible is decorative → `hot_take`. Judge whether
+  the claim is the *kind* that could be checked, not whether you can confirm the number.
+
 ## Output format (exact)
 ```
 id,label,confidence,rationale

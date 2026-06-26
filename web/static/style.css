@@ -124,6 +124,13 @@ button, .primary, .ghost {
 .card-text { font-size: 20px; line-height: 1.5; margin: 0 0 16px; min-height: 60px; }
 .notes { margin-top: 4px; }
 
+.hint-row { font-size: 12px; color: var(--muted); margin: 0 0 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.hint-label { font-weight: 600; }
+.hint-badge { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; }
+.hint-badge.warn { border-color: var(--hot_take); color: var(--hot_take); }
+.hint-badge.ok { border-color: var(--analysis); color: var(--analysis); }
+.hint-note { font-style: italic; opacity: .85; }
+
 .label-buttons { display: flex; gap: 10px; margin: 18px 0; flex-wrap: wrap; }
 .label-btn {
   flex: 1; min-width: 120px; text-align: center; padding: 14px 8px; border-radius: 11px;

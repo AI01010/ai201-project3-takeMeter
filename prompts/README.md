@@ -1,9 +1,12 @@
 # TakeMeter — Model Labeling Prompts
 
-This folder holds the prompts used to **pre-label** the 200 examples with three
+This folder holds the prompts used to **pre-label** the 200 examples with four
 different AI tools, so we can (a) speed up annotation and (b) run the
 **inter-annotator reliability** stretch goal by comparing each model against your
 own human labels (Cohen's κ / % agreement).
+
+The four model annotators: **Claude Code**, **Codex**, **GitHub Copilot**, and **Groq**
+(`llama-3.3-70b`, fully automated via [`../labels/label_with_groq.py`](../labels/label_with_groq.py)).
 
 > ⚠️ Per the project spec: **AI pre-labels are a starting point, not the answer.**
 > You must review and correct every example yourself. Disclose this AI assistance
@@ -29,6 +32,13 @@ rows. `skip` is **not** a training class.
 4. Genuinely blends reaction + a real argument, neither dominates → **mixed**.
 5. Tie / 50-50 after keyword check → **mixed**.
 
+### Outside context (sarcasm + factuality)
+Every prompt now tells the model to use outside knowledge as context rather than taking
+posts at face value: detect **sarcasm** (label by real intent) and judge whether a cited
+stat is a **verifiable** claim (decorative/made-up "stats" → hot_take, not analysis). The
+Groq runner also writes these two signals to [`../data/context_hints.csv`](../data/), and
+the web **Train** page shows them next to each example to help you label faster.
+
 ## Workflow
 
 1. Input file: [`../data/examples_to_label.csv`](../data/examples_to_label.csv) — columns `id,text,label,notes,source` (`label` blank).
@@ -36,6 +46,7 @@ rows. `skip` is **not** a training class.
    - [`../labels/claude/labeled.csv`](../labels/claude/)
    - [`../labels/codex/labeled.csv`](../labels/codex/)
    - [`../labels/copilot/labeled.csv`](../labels/copilot/)
+   - [`../labels/groq/labeled.csv`](../labels/groq/) — automated: `python ../labels/label_with_groq.py`
 3. You label by hand in the web **Train** page → exports to [`../labels/human/labeled.csv`](../labels/human/).
 4. Compare with `python ../labels/compare_labels.py` → agreement rates + disagreement list.
 5. The **human** file (your reviewed labels) is what you upload to the Colab notebook for training.
