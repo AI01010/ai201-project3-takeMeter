@@ -1,0 +1,201 @@
+id,label,confidence,sarcasm,verifiable,rationale
+1,skip,0.9,False,True,Pure news report
+2,reaction,0.8,False,True,Simple factual report
+3,analysis,0.8,False,True,Specific game references
+4,skip,0.9,False,True,Pure news report
+5,analysis,0.9,False,True,Specific xG stat
+6,skip,0.9,False,True,Pure news report
+7,analysis,0.9,False,True,uses specific stats
+8,skip,0.9,False,False,Pure news report
+9,skip,0.9,False,True,Pure news report
+10,skip,0.9,False,True,Pure news report
+11,reaction,0.8,False,True,Emotional response
+12,analysis,0.9,False,True,uses specific stats
+13,hot_take,0.9,False,False,Bold opinion
+14,reaction,0.8,False,True,emotional response
+15,skip,0.9,False,True,Pure news report
+16,reaction,0.9,False,False,Emotional response
+17,analysis,0.8,False,True,Specific tactical critique
+18,hot_take,0.9,False,False,Opinionated claim
+19,skip,0.9,False,False,Pure news headline
+20,mixed,0.8,False,True,Emotion with tactical critique
+21,analysis,0.8,False,True,Specific stats mentioned
+22,skip,0.9,False,True,Pure news report
+23,reaction,0.9,False,False,Emotional response
+24,skip,0.9,False,True,Pure news report
+25,hot_take,0.9,False,False,Opinion without evidence
+26,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+27,reaction,0.9,False,False,Emotional response
+28,skip,0.9,False,True,Pure news report
+29,skip,0.9,False,True,Pure news report
+30,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+31,reaction,0.9,False,False,Emotional response
+32,reaction,0.8,False,False,Merson's quote
+33,analysis,0.9,False,True,Specific stats
+34,skip,0.9,False,False,Pure news report
+35,mixed,0.8,False,True,Emotion with specific claim
+36,hot_take,0.9,False,False,Bold opinion
+37,skip,0.9,False,True,Pure news report
+38,reaction,0.9,False,False,Emotional response
+39,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+40,reaction,0.9,False,False,Emotional response
+41,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+42,reaction,0.8,False,False,Emotional response
+43,skip,0.9,False,True,Pure news report
+44,skip,0.9,False,False,Pure news report
+45,reaction,0.9,False,False,Emotional response
+46,skip,0.9,False,False,Pure news report
+47,skip,0.9,False,True,Pure news report
+48,analysis,0.9,False,True,uses specific stats
+49,mixed,0.9,False,True,Emotion with evidence
+50,skip,0.9,False,True,Pure news report
+51,hot_take,0.9,True,False,Sarcastic opinion
+52,mixed,0.8,False,True,Emotion with data
+53,reaction,0.9,False,False,Emotional response
+54,analysis,0.9,False,True,stats comparison
+55,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+56,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+57,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+58,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+59,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+60,reaction,0.9,False,False,Emotional response
+61,reaction,0.8,False,False,Brief emotional response
+62,skip,0.9,False,True,Pure news report
+63,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+64,analysis,0.9,False,True,Specific critique of xG models
+65,reaction,0.9,False,False,Emotional response
+66,hot_take,0.9,True,False,Sarcastic opinion
+67,skip,0.9,False,False,Pure news report
+68,hot_take,0.9,False,False,Bold opinion
+69,reaction,0.8,False,True,Emotional call for manager's exit
+70,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+71,skip,0.9,False,False,Pure news report
+72,reaction,0.9,False,False,Emotional response
+73,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+74,reaction,0.8,False,False,Emotional response
+75,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+76,skip,0.9,False,True,Pure news report
+77,skip,0.9,False,True,Pure news report
+78,reaction,0.9,False,False,Emotional response
+79,hot_take,0.9,False,False,Opinionated claim
+80,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+81,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+82,mixed,0.8,False,True,Emotion with tactical critique
+83,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+84,skip,1.0,False,True,Pure news report
+85,analysis,0.9,False,True,Specific protocol
+86,reaction,0.9,False,False,emotional response
+87,reaction,0.9,False,False,Emotional response
+88,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+89,hot_take,0.8,False,False,Lacks specific evidence
+90,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+91,skip,0.9,False,True,Pure news report
+92,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+93,analysis,0.9,False,True,uses xG stat
+94,hot_take,0.9,False,False,Opinion without evidence
+95,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+96,hot_take,0.9,False,False,bold opinion
+97,reaction,0.8,True,False,Emotional tone
+98,skip,0.9,False,False,Pure news report
+99,hot_take,0.9,False,False,"bold claim, lacks evidence"
+100,hot_take,0.9,False,False,Opinion without evidence
+101,skip,0.9,False,False,Pure news report
+102,skip,0.9,False,False,Pure news report
+103,reaction,0.8,True,False,Emotional response
+104,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+105,analysis,0.9,False,True,Specific player critique
+106,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+107,analysis,0.8,False,True,uses specific team example
+108,hot_take,0.9,False,False,Bold claim
+109,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+110,skip,0.9,False,True,Pure news report
+111,reaction,0.9,False,False,Emotional response
+112,hot_take,0.9,False,False,Opinion without evidence
+113,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+114,reaction,0.8,True,False,Coach's joking comment
+115,hot_take,0.8,False,True,Cherry-picked stat
+116,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+117,analysis,0.9,False,True,Specific stats
+118,hot_take,0.9,False,False,Bold opinion
+119,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+120,analysis,0.9,False,True,Specific tactical evidence
+121,skip,0.9,False,True,Pure news report
+122,analysis,0.9,False,True,Specific tactical critique
+123,skip,0.9,False,True,Pure news report
+124,analysis,0.9,False,True,uses specific stats
+125,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+126,hot_take,0.9,False,False,Overly simplistic claim
+127,analysis,0.9,False,True,uses specific stats
+128,reaction,0.9,False,False,Emotional response
+129,analysis,0.9,False,True,Specific stats
+130,analysis,0.9,False,True,uses stats
+131,reaction,0.8,False,True,Reports recent event
+132,analysis,0.9,False,True,Specific data claim
+133,hot_take,0.9,False,False,Bold opinion
+134,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+135,analysis,0.8,False,True,Historical data
+136,skip,0.9,False,False,Pure news prompt
+137,reaction,0.9,False,False,Emotional response
+138,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+139,reaction,0.9,False,False,Emotional response
+140,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+141,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+142,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+143,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+144,mixed,0.8,False,True,Emotion with tactical insight
+145,skip,0.9,False,True,Pure news report
+146,analysis,0.9,False,True,structured argument with evidence
+147,skip,0.9,False,True,Pure news report
+148,skip,0.9,False,True,Pure news report
+149,reaction,0.8,False,True,Recent event response
+150,skip,0.9,False,False,Pure news report
+151,analysis,0.8,False,True,Specific stat mentioned
+152,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+153,hot_take,0.9,False,True,Bold claim
+154,analysis,0.8,False,True,Objective match assessment
+155,analysis,0.9,False,True,Specific tactics
+156,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+157,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+158,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+159,hot_take,0.9,False,False,Bold opinion
+160,analysis,0.9,False,True,Specific stat
+161,hot_take,0.8,False,False,Bold opinion
+162,skip,1.0,False,True,Pure news report
+163,hot_take,0.9,False,False,bold opinion
+164,analysis,0.8,False,True,Tactical reasoning
+165,analysis,0.9,False,True,Specific MLS roster rules
+166,analysis,0.9,False,True,Tactical explanation
+167,skip,0.9,False,True,Pure news report
+168,reaction,0.8,False,True,Reports recent event
+169,reaction,0.8,False,True,Emotional response
+170,analysis,0.9,False,True,Specific stats and facts
+171,analysis,0.9,False,True,Specific stats provided
+172,skip,0.9,False,True,Pure news report
+173,hot_take,0.9,True,False,Sarcastic opinion
+174,reaction,0.9,False,False,Emotional response
+175,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+176,skip,0.9,False,True,Pure news report
+177,skip,0.9,False,False,Pure news report
+178,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+179,hot_take,0.9,False,False,Opinion without evidence
+180,reaction,0.9,False,False,Emotional response
+181,analysis,0.9,False,True,Specific tactic and stat
+182,hot_take,0.9,False,False,Bold opinion
+183,reaction,0.9,False,False,Emotional response
+184,mixed,0.8,False,True,Balanced emotion and critique
+185,skip,0.9,False,False,Pure news report
+186,skip,0.9,False,True,Pure news report
+187,analysis,0.9,False,True,Specific stat cited
+188,hot_take,0.9,False,False,Opinion without evidence
+189,skip,0.0,False,False,error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `
+190,reaction,0.8,False,True,Reports recent event
+191,reaction,0.9,False,False,Emotional response
+192,skip,0.9,False,False,Pure news report
+193,reaction,0.9,False,False,Emotional response
+194,hot_take,0.9,False,False,Bold opinion
+195,reaction,0.8,False,False,Emotional response
+196,reaction,0.9,False,True,Emotional response
+197,mixed,0.9,False,True,Emotion with statistical evidence
+198,mixed,0.8,False,True,Emotion with specific stats
+199,reaction,0.9,False,False,Emotional response
+200,analysis,0.9,False,True,Tactical explanation

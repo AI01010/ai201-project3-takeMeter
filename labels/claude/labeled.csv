@@ -1,0 +1,201 @@
+id,label,confidence,sarcasm,verifiable,rationale
+1,skip,0.9,False,True,"Pure news headline, no opinion"
+2,skip,0.9,False,True,Factual news report
+3,analysis,0.7,False,True,Structured argument comparing specific recent games
+4,skip,0.9,False,True,Kit leak news
+5,analysis,0.95,False,True,Specific xG and points evidence
+6,skip,0.9,False,True,Pure news report
+7,analysis,0.9,False,True,Specific goalkeeper xG stats and reasoning
+8,skip,0.9,False,False,News headline list
+9,skip,0.9,False,True,Product release news
+10,skip,0.9,False,True,Kit leak news
+11,mixed,0.75,False,True,Emotion plus possession/shot stats critique
+12,analysis,0.9,False,True,Specific xG-per-shot evidence
+13,hot_take,0.7,False,False,"Bold absolutist opinion, no evidence"
+14,reaction,0.7,False,True,Emotional reaction to today's heavy loss
+15,skip,0.9,False,True,Transfer news
+16,reaction,0.95,False,False,Pure in-the-moment emotion
+17,hot_take,0.6,False,False,Dismissive contrarian opinion on a goal
+18,hot_take,0.9,False,False,"Contrarian assertion, no real evidence"
+19,skip,0.9,False,False,News headline
+20,mixed,0.8,False,True,"Pride plus tactical critique, neither dominates"
+21,skip,0.6,False,True,"News summary, vague stat references"
+22,skip,0.9,False,True,Human-interest news report
+23,reaction,0.95,False,False,Pure emotional reaction
+24,skip,0.9,False,True,Kit launch news
+25,hot_take,0.9,False,False,Opinion without evidence
+26,mixed,0.75,False,True,Emotion plus spending-vs-homegrown argument
+27,reaction,0.7,False,False,"Emotional fan praise, opinion not evidence"
+28,skip,0.9,False,True,Match result news
+29,skip,0.9,False,True,Transfer news
+30,mixed,0.8,False,True,Emotion plus fixtures/points argument
+31,hot_take,0.7,False,False,"Opinion on player, no evidence"
+32,skip,0.85,False,True,Reported pundit quote
+33,analysis,0.95,False,True,Specific PPDA and tactical change
+34,skip,0.9,False,True,Product release news
+35,mixed,0.8,False,True,Emotion plus recruitment/revenue argument
+36,hot_take,0.9,False,False,"Absolutist opinion, no evidence"
+37,skip,0.9,False,True,News preview
+38,reaction,0.95,False,False,Pure emotional reaction
+39,skip,0.9,False,False,Human-interest news
+40,reaction,0.95,False,False,Pure emotional reaction
+41,skip,0.9,False,False,News headline
+42,skip,0.9,False,False,News feature
+43,skip,0.9,False,True,News report with stats
+44,skip,0.9,False,False,News preview
+45,reaction,0.9,False,False,Emotional reaction to sacking
+46,skip,0.9,False,False,Human-interest news
+47,skip,0.9,False,True,News report
+48,skip,0.6,False,True,"News factoid, minimal argument"
+49,mixed,0.8,False,True,Anger plus reasoned acceptance of red card
+50,skip,0.9,False,True,News preview
+51,hot_take,0.9,False,False,"Contrarian opinion, no evidence"
+52,mixed,0.85,False,True,Emotion plus set-piece/xG regression argument
+53,reaction,0.95,False,False,Pure emotional reaction
+54,analysis,0.9,False,True,Specific goal-involvement era comparison
+55,mixed,0.8,False,True,Emotion plus recruitment argument
+56,skip,0.9,False,True,Kit leak news
+57,reaction,0.6,False,False,"Emotional captain praise, intangibles take"
+58,skip,0.9,False,True,Match result headline
+59,skip,0.9,False,False,News feature
+60,reaction,0.95,False,False,Pure emotional reaction
+61,skip,0.9,False,False,Human-interest news
+62,skip,0.9,False,True,Match report
+63,reaction,0.75,False,False,"Emotional reaction, opinion not evidence"
+64,analysis,0.8,False,True,Argument about xG sample size and error bars
+65,reaction,0.95,False,False,Pure emotional reaction
+66,hot_take,0.9,False,False,"Rhetorical opinion, no evidence"
+67,skip,0.9,False,True,News report
+68,hot_take,0.9,False,False,"Contrarian opinion, no evidence"
+69,reaction,0.65,False,False,"Emotional manager-out venting, vague data"
+70,mixed,0.8,False,True,Emotion plus underlying-numbers caution
+71,skip,0.9,False,False,Transfer news
+72,reaction,0.95,False,False,Pure emotional reaction
+73,skip,0.9,False,False,Human-interest news
+74,skip,0.9,False,True,News report
+75,hot_take,0.9,False,False,"Opinion, no evidence"
+76,skip,0.9,False,True,Match result headline
+77,skip,0.9,False,True,Transfer news
+78,reaction,0.9,False,False,Emotional reaction to heavy loss
+79,hot_take,0.9,False,False,"Contrarian opinion, no evidence"
+80,skip,0.9,False,True,News report
+81,skip,0.9,False,False,Human-interest news
+82,mixed,0.8,False,True,Emotion plus performance/setup critique
+83,skip,0.9,False,False,Match recap news
+84,skip,0.9,False,False,Transfer roundup
+85,skip,0.85,False,False,News explainer description
+86,reaction,0.9,False,False,Emotional reaction to loss
+87,reaction,0.95,False,False,Pure emotional reaction
+88,skip,0.9,False,False,News headline
+89,hot_take,0.85,False,False,"Opinion, anecdotal not verifiable"
+90,skip,0.9,False,True,News report
+91,skip,0.9,False,True,Match result headline
+92,skip,0.9,False,True,News report
+93,analysis,0.9,False,True,Specific xG margin and tactical plan
+94,hot_take,0.9,False,False,"Contrarian opinion, no evidence"
+95,skip,0.9,False,True,Match result report
+96,hot_take,0.9,False,False,"Absolutist opinion, no evidence"
+97,reaction,0.65,False,False,Sardonic emotional venting at board
+98,skip,0.9,False,False,News preview
+99,hot_take,0.95,False,False,"Self-labeled hot take, no evidence"
+100,hot_take,0.9,False,False,"Dismissive opinion, decorative stat"
+101,skip,0.9,False,False,Tool promo news
+102,skip,0.9,False,False,Human-interest news
+103,skip,0.85,False,True,News headline of joke
+104,skip,0.9,False,True,Kit news
+105,skip,0.85,False,False,Opinion-column headline only
+106,skip,0.9,False,False,Human-interest news
+107,skip,0.8,False,True,"News note, mild observation"
+108,hot_take,0.9,False,False,"Bold prediction, no evidence"
+109,hot_take,0.9,False,False,"Opinion, no evidence"
+110,skip,0.9,False,True,News report
+111,reaction,0.95,False,False,Pure emotional reaction
+112,hot_take,0.9,False,False,"Era opinion, no evidence"
+113,mixed,0.8,False,True,Emotion plus performance/sub critique
+114,skip,0.9,False,True,Reported coach quote
+115,hot_take,0.85,False,True,Cherry-picked stat to dismiss player
+116,skip,0.9,False,True,Match result headline
+117,analysis,0.9,False,True,Specific overlap/cross stats and tactics
+118,hot_take,0.9,False,False,"Dismissive opinion, no evidence"
+119,mixed,0.75,False,True,Emotion plus final-third critique
+120,analysis,0.9,False,True,VAR stat plus structural tactical issue
+121,skip,0.9,False,True,Kit leak news
+122,mixed,0.7,False,True,Emotion plus high-line tactical warning
+123,skip,0.9,False,True,News report
+124,analysis,0.9,False,True,Specific xG+xA per-90 stat
+125,hot_take,0.85,False,False,"Intangibles take, anti-stats, no evidence"
+126,hot_take,0.9,False,False,"Dismissive opinion, no evidence"
+127,analysis,0.9,False,True,Specific xGD comparison and reasoning
+128,reaction,0.95,False,False,Pure emotional reaction
+129,analysis,0.9,False,True,Specific distribution and claim stats
+130,analysis,0.9,False,True,Corner conversion vs league average stat
+131,skip,0.9,False,True,Match report
+132,analysis,0.9,False,True,Decade-long relegation-rate data argument
+133,hot_take,0.9,False,False,"Opinion, no evidence"
+134,reaction,0.95,False,False,Pure emotional reaction
+135,skip,0.85,False,False,Historical feature description
+136,skip,0.9,False,False,Quiz feature
+137,reaction,0.95,False,False,Pure emotional reaction
+138,analysis,0.9,False,True,Conditional xGA stat and explanation
+139,reaction,0.9,False,False,Emotional reaction
+140,skip,0.9,False,False,News headline
+141,skip,0.9,False,True,Match report
+142,skip,0.9,False,True,Schedule news
+143,skip,0.9,False,False,News preview
+144,mixed,0.8,False,True,Heartbreak plus opponent-press tactical credit
+145,skip,0.9,False,True,Standings news
+146,analysis,0.8,False,True,Structural argument on expansion format
+147,skip,0.9,False,True,Kit news
+148,skip,0.9,False,True,Match action news
+149,skip,0.9,False,True,News report
+150,skip,0.9,False,False,Opinion-column headline only
+151,hot_take,0.7,False,False,Loose pseudo-stat dismissal of player
+152,analysis,0.9,False,True,Spacing tactical explanation
+153,hot_take,0.8,False,True,"Passionate assertion, decorative stat"
+154,skip,0.85,False,True,Opinion-column summary news
+155,analysis,0.9,False,True,Specific formation and tactical breakdown
+156,hot_take,0.9,False,False,"Dismissive opinion, no evidence"
+157,skip,0.9,False,False,Transfer rumor news
+158,skip,0.9,False,True,Product collection news
+159,hot_take,0.9,False,False,"Opinion, no evidence"
+160,analysis,0.9,False,True,U-21 minutes pipeline data argument
+161,skip,0.85,False,False,Feature headline only
+162,skip,0.9,False,False,Transfer roundup
+163,hot_take,0.9,False,False,"Sweeping opinion, no evidence"
+164,skip,0.85,False,True,News note
+165,analysis,0.85,False,True,MLS roster-rule structural argument
+166,analysis,0.9,False,True,Rest-defense tactical explanation
+167,skip,0.9,False,True,Product drop news
+168,skip,0.9,False,True,News report
+169,mixed,0.8,False,True,Emotion plus backed-in qualification argument
+170,analysis,0.9,False,True,Specific set-piece goal and height stats
+171,analysis,0.9,False,True,High-line xG trade-off data
+172,skip,0.9,False,True,Reported manager quote
+173,hot_take,0.9,False,False,"Cynical generalization, no evidence"
+174,reaction,0.95,False,False,Pure emotional reaction
+175,skip,0.9,False,False,Live news roundup
+176,skip,0.9,False,True,Match result report
+177,skip,0.9,False,False,Trivia feature
+178,reaction,0.95,False,False,Pure emotional reaction
+179,hot_take,0.9,False,False,"Provocative opinion, no evidence"
+180,reaction,0.9,False,False,Emotional gallows-humor reaction
+181,analysis,0.9,False,True,Specific pressing triggers and turnover count
+182,hot_take,0.85,False,False,"Market rant, decorative figure"
+183,reaction,0.95,False,False,Pure emotional reaction
+184,mixed,0.75,False,True,Joy plus soft-penalty performance critique
+185,skip,0.9,False,False,Human-interest news
+186,skip,0.9,False,True,Match result report
+187,analysis,0.9,False,True,Open-play xA argument vs raw contributions
+188,hot_take,0.9,False,False,"Absolutist opinion, no evidence"
+189,skip,0.9,False,True,News headline
+190,skip,0.9,False,True,Injury news
+191,reaction,0.95,False,False,Pure emotional reaction
+192,skip,0.9,False,False,Human-interest news
+193,reaction,0.9,False,False,Emotional reaction to relegation
+194,hot_take,0.9,False,False,"Era opinion, no evidence"
+195,hot_take,0.55,False,False,"Opinionated selection complaint, asserted not argued"
+196,reaction,0.7,False,True,Emotional venting with shot stat
+197,mixed,0.85,False,True,Emotion plus xG structural argument
+198,mixed,0.8,False,True,Excitement plus defensive-record caution
+199,reaction,0.95,False,False,Pure emotional reaction
+200,analysis,0.9,False,True,Wing-back pivot coverage tactical analysis

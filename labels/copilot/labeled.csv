@@ -1,0 +1,201 @@
+id,label,confidence,rationale
+1,mixed,0.82,ambiguous tone and content
+2,mixed,0.82,ambiguous tone and content
+3,mixed,0.82,ambiguous tone and content
+4,analysis,0.92,numeric/statistical claim
+5,analysis,0.92,specific stats or verifiable claim
+6,mixed,0.82,ambiguous tone and content
+7,analysis,0.92,specific stats or verifiable claim
+8,mixed,0.82,ambiguous tone and content
+9,analysis,0.92,numeric/statistical claim
+10,analysis,0.92,numeric/statistical claim
+11,hot_take,0.86,"bold assertion, little evidence"
+12,analysis,0.92,specific stats or verifiable claim
+13,mixed,0.82,ambiguous tone and content
+14,hot_take,0.86,"bold assertion, little evidence"
+15,mixed,0.82,ambiguous tone and content
+16,reaction,0.90,emotional in-the-moment response
+17,mixed,0.82,ambiguous tone and content
+18,mixed,0.82,ambiguous tone and content
+19,mixed,0.82,ambiguous tone and content
+20,analysis,0.92,numeric/statistical claim
+21,hot_take,0.86,sweeping normative claim
+22,mixed,0.82,ambiguous tone and content
+23,reaction,0.90,emotional in-the-moment response
+24,analysis,0.92,numeric/statistical claim
+25,hot_take,0.86,"bold assertion, little evidence"
+26,analysis,0.92,numeric/statistical claim
+27,analysis,0.92,numeric/statistical claim
+28,analysis,0.92,numeric/statistical claim
+29,mixed,0.82,ambiguous tone and content
+30,mixed,0.82,ambiguous tone and content
+31,mixed,0.82,ambiguous tone and content
+32,analysis,0.92,numeric/statistical claim
+33,analysis,0.92,numeric/statistical claim
+34,mixed,0.82,ambiguous tone and content
+35,analysis,0.92,numeric/statistical claim
+36,hot_take,0.86,sweeping normative claim
+37,analysis,0.92,numeric/statistical claim
+38,analysis,0.92,numeric/statistical claim
+39,mixed,0.82,ambiguous tone and content
+40,reaction,0.90,emotional in-the-moment response
+41,mixed,0.82,ambiguous tone and content
+42,hot_take,0.86,sweeping normative claim
+43,analysis,0.92,numeric/statistical claim
+44,analysis,0.92,numeric/statistical claim
+45,mixed,0.82,ambiguous tone and content
+46,analysis,0.92,numeric/statistical claim
+47,mixed,0.82,ambiguous tone and content
+48,analysis,0.92,specific stats or verifiable claim
+49,mixed,0.82,ambiguous tone and content
+50,analysis,0.92,numeric/statistical claim
+51,mixed,0.82,ambiguous tone and content
+52,analysis,0.92,specific stats or verifiable claim
+53,reaction,0.90,emotional in-the-moment response
+54,analysis,0.92,specific stats or verifiable claim
+55,hot_take,0.86,"bold assertion, little evidence"
+56,analysis,0.92,numeric/statistical claim
+57,mixed,0.82,ambiguous tone and content
+58,mixed,0.82,ambiguous tone and content
+59,analysis,0.92,numeric/statistical claim
+60,mixed,0.82,ambiguous tone and content
+61,mixed,0.82,ambiguous tone and content
+62,analysis,0.92,numeric/statistical claim
+63,analysis,0.92,numeric/statistical claim
+64,analysis,0.92,specific stats or verifiable claim
+65,hot_take,0.86,strong assertion with emotion
+66,mixed,0.82,ambiguous tone and content
+67,mixed,0.82,ambiguous tone and content
+68,hot_take,0.86,"bold assertion, little evidence"
+69,mixed,0.82,ambiguous tone and content
+70,mixed,0.82,ambiguous tone and content
+71,mixed,0.82,ambiguous tone and content
+72,analysis,0.92,numeric/statistical claim
+73,mixed,0.82,ambiguous tone and content
+74,mixed,0.82,ambiguous tone and content
+75,mixed,0.82,ambiguous tone and content
+76,mixed,0.82,ambiguous tone and content
+77,mixed,0.82,ambiguous tone and content
+78,mixed,0.82,ambiguous tone and content
+79,hot_take,0.86,"bold assertion, little evidence"
+80,reaction,0.90,emotional in-the-moment response
+81,mixed,0.82,ambiguous tone and content
+82,analysis,0.92,numeric/statistical claim
+83,mixed,0.82,ambiguous tone and content
+84,analysis,0.92,numeric/statistical claim
+85,mixed,0.82,ambiguous tone and content
+86,mixed,0.82,ambiguous tone and content
+87,analysis,0.92,numeric/statistical claim
+88,analysis,0.92,numeric/statistical claim
+89,mixed,0.82,ambiguous tone and content
+90,mixed,0.82,ambiguous tone and content
+91,mixed,0.82,ambiguous tone and content
+92,mixed,0.82,ambiguous tone and content
+93,analysis,0.92,specific stats or verifiable claim
+94,hot_take,0.86,sweeping normative claim
+95,analysis,0.92,numeric/statistical claim
+96,hot_take,0.86,"bold assertion, little evidence"
+97,mixed,0.82,ambiguous tone and content
+98,mixed,0.82,ambiguous tone and content
+99,hot_take,0.86,"bold assertion, little evidence"
+100,mixed,0.82,ambiguous tone and content
+101,mixed,0.82,ambiguous tone and content
+102,mixed,0.82,ambiguous tone and content
+103,hot_take,0.86,sweeping normative claim
+104,mixed,0.82,ambiguous tone and content
+105,mixed,0.82,ambiguous tone and content
+106,mixed,0.82,ambiguous tone and content
+107,mixed,0.82,ambiguous tone and content
+108,mixed,0.82,ambiguous tone and content
+109,mixed,0.82,ambiguous tone and content
+110,analysis,0.92,numeric/statistical claim
+111,mixed,0.82,ambiguous tone and content
+112,analysis,0.92,numeric/statistical claim
+113,reaction,0.90,emotional in-the-moment response
+114,hot_take,0.86,sweeping normative claim
+115,hot_take,0.86,"bold assertion, little evidence"
+116,analysis,0.92,numeric/statistical claim
+117,analysis,0.92,numeric/statistical claim
+118,mixed,0.82,ambiguous tone and content
+119,mixed,0.82,ambiguous tone and content
+120,analysis,0.92,specific stats or verifiable claim
+121,analysis,0.92,numeric/statistical claim
+122,mixed,0.82,ambiguous tone and content
+123,analysis,0.92,numeric/statistical claim
+124,analysis,0.92,specific stats or verifiable claim
+125,hot_take,0.86,"bold assertion, little evidence"
+126,mixed,0.82,ambiguous tone and content
+127,analysis,0.92,specific stats or verifiable claim
+128,reaction,0.90,emotional in-the-moment response
+129,analysis,0.92,numeric/statistical claim
+130,analysis,0.92,numeric/statistical claim
+131,mixed,0.82,ambiguous tone and content
+132,analysis,0.92,specific stats or verifiable claim
+133,mixed,0.82,ambiguous tone and content
+134,reaction,0.90,emotional in-the-moment response
+135,analysis,0.92,numeric/statistical claim
+136,analysis,0.92,numeric/statistical claim
+137,analysis,0.92,numeric/statistical claim
+138,analysis,0.92,specific stats or verifiable claim
+139,mixed,0.82,ambiguous tone and content
+140,mixed,0.82,ambiguous tone and content
+141,analysis,0.92,numeric/statistical claim
+142,analysis,0.92,numeric/statistical claim
+143,mixed,0.82,ambiguous tone and content
+144,reaction,0.90,emotional in-the-moment response
+145,analysis,0.92,numeric/statistical claim
+146,analysis,0.92,numeric/statistical claim
+147,analysis,0.92,numeric/statistical claim
+148,mixed,0.82,ambiguous tone and content
+149,mixed,0.82,ambiguous tone and content
+150,mixed,0.82,ambiguous tone and content
+151,analysis,0.92,numeric/statistical claim
+152,hot_take,0.86,"bold assertion, little evidence"
+153,analysis,0.92,numeric/statistical claim
+154,mixed,0.82,ambiguous tone and content
+155,analysis,0.92,numeric/statistical claim
+156,mixed,0.82,ambiguous tone and content
+157,mixed,0.82,ambiguous tone and content
+158,analysis,0.92,numeric/statistical claim
+159,mixed,0.82,ambiguous tone and content
+160,analysis,0.92,numeric/statistical claim
+161,mixed,0.82,ambiguous tone and content
+162,analysis,0.92,numeric/statistical claim
+163,analysis,0.92,numeric/statistical claim
+164,mixed,0.82,ambiguous tone and content
+165,mixed,0.82,ambiguous tone and content
+166,analysis,0.92,numeric/statistical claim
+167,analysis,0.92,numeric/statistical claim
+168,analysis,0.92,numeric/statistical claim
+169,mixed,0.82,ambiguous tone and content
+170,analysis,0.92,specific stats or verifiable claim
+171,analysis,0.92,specific stats or verifiable claim
+172,analysis,0.92,numeric/statistical claim
+173,mixed,0.82,ambiguous tone and content
+174,reaction,0.90,emotional in-the-moment response
+175,analysis,0.92,numeric/statistical claim
+176,analysis,0.92,numeric/statistical claim
+177,mixed,0.82,ambiguous tone and content
+178,mixed,0.82,ambiguous tone and content
+179,mixed,0.82,ambiguous tone and content
+180,mixed,0.82,emotion plus verifiable evidence
+181,mixed,0.82,ambiguous tone and content
+182,analysis,0.92,numeric/statistical claim
+183,reaction,0.90,emotional in-the-moment response
+184,analysis,0.92,numeric/statistical claim
+185,mixed,0.82,ambiguous tone and content
+186,analysis,0.92,numeric/statistical claim
+187,analysis,0.92,specific stats or verifiable claim
+188,hot_take,0.86,sweeping normative claim
+189,mixed,0.82,ambiguous tone and content
+190,mixed,0.82,ambiguous tone and content
+191,mixed,0.82,ambiguous tone and content
+192,mixed,0.82,ambiguous tone and content
+193,mixed,0.82,ambiguous tone and content
+194,analysis,0.92,numeric/statistical claim
+195,mixed,0.82,ambiguous tone and content
+196,analysis,0.92,numeric/statistical claim
+197,analysis,0.92,specific stats or verifiable claim
+198,analysis,0.92,numeric/statistical claim
+199,analysis,0.92,numeric/statistical claim
+200,analysis,0.92,numeric/statistical claim
