@@ -1,0 +1,99 @@
+{
+  "method": "5-fold stratified out-of-fold predictions (distilbert-base-uncased, CPU)",
+  "n": 111,
+  "epochs": 5,
+  "oof_accuracy": 0.7387,
+  "oof_macro_f1": 0.5777,
+  "per_class_recall": {
+    "analysis": 0.621,
+    "hot_take": 0.892,
+    "reaction": 0.861,
+    "mixed": 0.0
+  },
+  "per_class_precision": {
+    "analysis": 1.0,
+    "hot_take": 0.647,
+    "reaction": 0.738,
+    "mixed": 0.0
+  },
+  "per_class_support": {
+    "analysis": 29,
+    "hot_take": 37,
+    "reaction": 36,
+    "mixed": 9
+  },
+  "confusion_matrix": [
+    [
+      18,
+      11,
+      0,
+      0
+    ],
+    [
+      0,
+      33,
+      4,
+      0
+    ],
+    [
+      0,
+      5,
+      31,
+      0
+    ],
+    [
+      0,
+      2,
+      7,
+      0
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "analysis",
+    "hot_take",
+    "reaction",
+    "mixed"
+  ],
+  "calibration": {
+    "ece": 0.3797,
+    "bins": [
+      {
+        "bin": "0.2-0.3",
+        "n": 1,
+        "mean_conf": 0.298,
+        "accuracy": 1.0
+      },
+      {
+        "bin": "0.3-0.4",
+        "n": 100,
+        "mean_conf": 0.353,
+        "accuracy": 0.71
+      },
+      {
+        "bin": "0.4-0.5",
+        "n": 10,
+        "mean_conf": 0.427,
+        "accuracy": 1.0
+      }
+    ],
+    "mean_conf_when_correct": 0.364,
+    "mean_conf_when_wrong": 0.346,
+    "acc_low_conf_third": 0.595,
+    "acc_high_conf_third": 0.838,
+    "conf_min": 0.298,
+    "conf_max": 0.446
+  },
+  "error_patterns": {
+    "mixed_true_count": 9,
+    "mixed_predicted_count": 0,
+    "true_mixed_predicted_as": {
+      "analysis": 0,
+      "hot_take": 2,
+      "reaction": 7,
+      "mixed": 0
+    },
+    "acc_short_posts": 0.929,
+    "acc_long_posts": 0.545,
+    "length_median_chars": 135.0
+  }
+}

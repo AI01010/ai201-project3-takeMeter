@@ -34,14 +34,17 @@ except Exception:
 
 BASE = "https://api.sambanova.ai/v1"
 
-# (model id on SambaNova, folder slug under labels/). Edit if --list shows others.
+# (model id on SambaNova, folder slug, extra request params). Edit if --list differs.
+# gpt-oss is a reasoning model: cap its reasoning_effort so the chain-of-thought
+# doesn't eat the token budget before it emits the JSON answer.
+# MiniMax-M2.7 is intentionally omitted — it returns HTTP 402 (paid plan required)
+# on the free key. Add ("MiniMax-M2.7", "minimax-m2.7", {}) back if you enable billing.
 MODELS = [
-    ("Meta-Llama-3.3-70B-Instruct", "llama-3.3-70b"),
-    ("DeepSeek-V3.1",               "deepseek-v3.1"),
-    ("DeepSeek-V3.2",               "deepseek-v3.2"),
-    ("MiniMax-M2.7",                "minimax-m2.7"),
-    ("gemma-4-31B-it",              "gemma-4-31b"),
-    ("gpt-oss-120b",                "gpt-oss-120b"),
+    ("Meta-Llama-3.3-70B-Instruct", "llama-3.3-70b", {}),
+    ("DeepSeek-V3.1",               "deepseek-v3.1", {}),
+    ("DeepSeek-V3.2",               "deepseek-v3.2", {}),
+    ("gemma-4-31B-it",              "gemma-4-31b",   {}),
+    ("gpt-oss-120b",                "gpt-oss-120b",  {"reasoning_effort": "low"}),
 ]
 
 PAUSE_BETWEEN_MODELS = 4   # seconds — gentle on the shared key's rate limit
@@ -56,9 +59,15 @@ def list_models(key: str) -> None:
         print("  ", m)
 
 
-def call_model(key: str, model_id: str, messages: list[dict]) -> str:
-    """One chat completion. Retries on 429/5xx with backoff; max_tokens fallback."""
-    for max_tok in (8000, 4096):
+def call_model(key: str, model_id: str, messages: list[dict],
+               extra: dict | None = None) -> str:
+    """One chat completion. Retries on 429/5xx with backoff; max_tokens fallback.
+
+    16000 tokens first (reasoning models need headroom for thoughts + the JSON),
+    then 8000 as a fallback for any backend that caps lower.
+    """
+    extra = extra or {}
+    for max_tok in (16000, 8000):
         for attempt in range(4):
             try:
                 r = requests.post(
@@ -66,7 +75,7 @@ def call_model(key: str, model_id: str, messages: list[dict]) -> str:
                     headers={"Authorization": f"Bearer {key}",
                              "Content-Type": "application/json"},
                     json={"model": model_id, "messages": messages,
-                          "temperature": 0, "max_tokens": max_tok},
+                          "temperature": 0, "max_tokens": max_tok, **extra},
                     timeout=300)
                 if r.status_code == 200:
                     return r.json()["choices"][0]["message"]["content"] or ""
@@ -74,7 +83,7 @@ def call_model(key: str, model_id: str, messages: list[dict]) -> str:
                     time.sleep(2 ** attempt * 3)
                     continue
                 # 400 with a token cap → try the smaller max_tokens
-                if r.status_code == 400 and max_tok == 8000:
+                if r.status_code == 400 and max_tok == 16000:
                     break
                 print(f"    HTTP {r.status_code}: {r.text[:160]}")
                 return ""
@@ -107,10 +116,10 @@ def main() -> None:
 
     print(f"Labeling {len(rows)} posts with {len(targets)} SambaNova model(s), "
           f"one batched call each...\n")
-    for i, (model_id, slug) in enumerate(targets):
+    for i, (model_id, slug, extra) in enumerate(targets):
         t0 = time.time()
         print(f"[{i+1}/{len(targets)}] {model_id}  -> labels/{slug}/")
-        reply = call_model(key, model_id, messages)
+        reply = call_model(key, model_id, messages, extra)
         labels, n = parse_labels(reply, ids)
         dist = write_csv(slug, rows, labels, model_id)
         print(f"    parsed {n}/{len(rows)} in {time.time()-t0:.0f}s  dist={dist}")

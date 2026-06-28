@@ -47,9 +47,19 @@ prompts/                          # labeling prompts for 4 models + the Groq bas
   copilot_labeling_prompt.md  groq_labeling_prompt.md  groq_baseline_prompt.md
 
 labels/                           # one folder per annotator (inter-annotator reliability)
-  human/  claude/  codex/  copilot/  groq/
+  human/                          # MY reviewed labels — the only file used for training
+  claude/ codex/ copilot/ groq/   # the original 4 AI annotators
+  llama-3.3-70b/ deepseek-v3.1/ deepseek-v3.2/ gemma-4-31b/ gpt-oss-120b/  # SambaNova
+  gemini/                         # Google Gemini
   label_with_groq.py              # auto-labels with Groq + emits context_hints.csv
-  compare_labels.py               # % agreement + Cohen's kappa across annotators
+  label_with_sambanova.py         # one batched call per SambaNova model (all 200 at once)
+  label_with_gemini.py            # one batched call to Gemini
+  _batch_label.py                 # shared rubric + lenient JSON parser for the batch labelers
+  compare_labels.py               # % agreement + Cohen's kappa across every annotator folder
+
+stretch_calibration.py            # stretch goals: confidence calibration + error patterns (5-fold OOF)
+stretch_results.json              # calibration (ECE) + error-pattern numbers
+reliability_diagram.png           # confidence vs accuracy (calibration curve)
 
 web/                              # Flask app: Train (label) page + Test (classify) page
   app.py  classifier.py  templates/  static/  model/
@@ -89,19 +99,25 @@ Keys: `1`/`a` analysis · `2`/`h` hot_take · `3`/`r` reaction · `4`/`m` mixed 
 skip · `←`/`→` move. Labels auto-save to `labels/human/labeled.csv` and the page
 resumes where you left off. Click **Export labeled.csv** to download the training file.
 
-### 3. (Optional) Pre-label with 4 models, then compare
-Run the prompts in [`prompts/`](prompts/) with Claude Code / Codex / Copilot → each
-writes `labels/<model>/labeled.csv`. **Groq is fully automated:**
+### 3. (Optional) Pre-label with the AI annotators, then compare
+I label the same 200 with a bunch of models so I can measure inter-annotator
+reliability against my own labels. Claude Code / Codex / Copilot run from the prompts
+in [`prompts/`](prompts/); the rest are automated:
 ```bash
-pip install groq python-dotenv joblib
-python labels/label_with_groq.py     # labels all 200 in parallel (GROQ_API_KEY from .env)
-python labels/compare_labels.py      # % agreement + Cohen's kappa across all annotators
+pip install groq requests
+python labels/label_with_groq.py        # Groq (per-post calls) + emits context_hints.csv
+python labels/label_with_sambanova.py   # 5 SambaNova models, ONE batched call each
+python labels/label_with_gemini.py      # Gemini, one batched call
+python labels/compare_labels.py         # % agreement + Cohen's kappa across every folder
 ```
-The Groq run also writes `data/context_hints.csv` — per-example **sarcasm** and
-**verifiable-claim** signals that the web Train page displays to help you judge each post
-(addresses "use outside context to validate posts when labeling"). This supports the
-**inter-annotator reliability** stretch goal. ⚠️ All AI pre-labels are a starting point —
-your reviewed `labels/human/` file is the ground truth that trains the model.
+SambaNova and Gemini each label all 200 in **a single request per model** — one prompt
+in, a JSON array of 200 labels out — so a single (shared, rate-limited) SambaNova key is
+only hit once per model. `compare_labels.py` auto-discovers every `labels/<name>/` folder,
+so new annotators show up automatically. Keys live in `.env`
+(`GROQ_API_KEY`, `SAMBA_NOVA_API_KEY`, `GEMINI_API_KEY`). The Groq run also writes
+`data/context_hints.csv` — per-example **sarcasm** and **verifiable-claim** signals shown
+on the web Train page to help me judge each post. ⚠️ Every AI label is a starting point —
+my reviewed `labels/human/` file is the ground truth that trains the model.
 
 ### Grow the dataset or add a label
 - **More examples:** `python data/build_dataset.py --append --target 300` adds fresh
@@ -129,50 +145,50 @@ back to Groq (zero-shot) or a transparent keyword heuristic, so the demo always 
   JSON; a model-export section feeding the web app.
 - **Data:** scraper-with-curated-fallback producing 200 unlabeled examples.
 - **Prompts:** one labeling prompt per model (Claude/Codex/Copilot) + the Groq baseline.
+- **Annotators:** added SambaNova (5 models, one batched 200-label call each) and Gemini
+  labelers + a shared batch parser; `compare_labels.py` now auto-discovers annotator folders.
+- **Stretch goals:** confidence calibration (5-fold out-of-fold, ECE + reliability diagram)
+  and a systematic error-pattern analysis on top of the inter-annotator reliability work.
 - **Web app:** keyboard-driven labeling page and a live classifier page.
 
 ---
 
 ## Evaluation report
 
-**How these numbers were produced.** The 200 examples were labeled (see *AI usage*
-below), leaving **111 trainable rows** after dropping 89 `skip` rows (pure news). I
-then ran the notebook's evaluation loop end-to-end via
-[`notebook_eval_local.py`](notebook_eval_local.py) — same data, the same stratified
-**70/15/15** split (`random_state=42` → train 77 / val 17 / **test 17**), the same
-metrics, and the same Groq zero-shot baseline prompt. It fine-tunes
-`distilbert-base-uncased` (5 epochs) and writes
-[`evaluation_results.json`](evaluation_results.json) +
-[`confusion_matrix.png`](confusion_matrix.png), exactly like the Colab notebook. This
-was a **local CPU** run; re-running the notebook on a T4 reproduces the same pipeline
-at scale. Test set is small (17), so treat single-class numbers as directional.
+I labeled all 200, dropped the 89 `skip` rows (pure news), and trained on the **111 real
+takes**. So I could report numbers I actually saw instead of placeholders, I ran the
+notebook's whole train → evaluate → baseline loop locally with
+[`notebook_eval_local.py`](notebook_eval_local.py) — same data, same stratified 70/15/15
+split (`random_state=42` → train 77 / val 17 / **test 17**), same metrics, same Groq
+baseline prompt. It writes [`evaluation_results.json`](evaluation_results.json) and
+[`confusion_matrix.png`](confusion_matrix.png), exactly like the Colab cells. It's a CPU
+run; the T4 notebook reproduces it at scale. 17 test rows is tiny, so for the stretch
+section I re-checked everything with 5-fold cross-validation over all 111 (below).
 
-### Overall accuracy — baseline vs fine-tuned
+### Accuracy — my fine-tune vs the zero-shot baseline
 
-| Model | Accuracy | Macro-F1 |
+| model | accuracy | macro-F1 |
 |---|---:|---:|
 | Zero-shot baseline — Groq `llama-3.3-70b` | **0.941** | **0.953** |
-| Fine-tuned DistilBERT (5 epochs, CPU) | 0.824 | 0.637 |
-| **Δ (fine-tune − baseline)** | **−0.118** | **−0.316** |
+| My fine-tuned DistilBERT (5 epochs) | 0.824 | 0.637 |
+| Δ (fine-tune − baseline) | −0.118 | −0.316 |
 
-> **The headline finding is that fine-tuning *lost* to the zero-shot baseline.** On a
-> 4-class, nuance-heavy taxonomy with only 77 training examples, a 66M-param model
-> can't learn distinctions that a 70B model already encodes. This is the honest result,
-> and it's the most useful thing the evaluation taught me (see *Reflection*).
+Straight up: **my fine-tune lost to the baseline.** With 77 training rows and a 4-class
+taxonomy that's mostly about nuance, a 66M-param model can't catch a 70B model that
+already knows this stuff zero-shot. I'd rather report that than fake a win.
 
-### Per-class metrics (fine-tuned DistilBERT)
+### Per-class (fine-tuned, 17-row test)
 
-| Class | Precision | Recall | F1 | Test support |
+| class | precision | recall | F1 | support |
 |---|---:|---:|---:|---:|
 | analysis | 1.00 | 0.80 | 0.89 | 5 |
 | hot_take | 0.80 | 0.80 | 0.80 | 5 |
 | reaction | 0.75 | 1.00 | 0.86 | 6 |
 | **mixed** | **0.00** | **0.00** | **0.00** | 1 |
 
-`mixed` was unlearnable at this scale: 8% of the data (~6 train rows, 1 test row), and
-the model never predicted it once. Baseline Groq, by contrast, got every class right
-except one `hot_take` (per-class F1: analysis 1.00, hot_take 0.89, reaction 0.92,
-mixed 1.00).
+`mixed` is dead — 8% of the data, ~6 training rows, and the model never predicts it once.
+Groq got every class on the test set except one `hot_take` (per-class F1: analysis 1.00,
+hot_take 0.89, reaction 0.92, mixed 1.00).
 
 ### Confusion matrix (fine-tuned, test set) — rows = true, cols = predicted
 
@@ -183,43 +199,35 @@ mixed 1.00).
 | **reaction** | 0 | 0 | 6 | 0 |
 | **mixed** | 0 | 0 | 1 | 0 |
 
-Every error spills *toward* `reaction` or between `analysis`/`hot_take` — the exact
-boundaries the taxonomy itself flags as hardest. `reaction` is a magnet (perfect recall,
-0.75 precision): the model over-uses the emotional class. See
-[`confusion_matrix.png`](confusion_matrix.png).
+Everything spills toward `reaction` or between `analysis`/`hot_take` — the boundaries I
+already flagged as hardest. `reaction` is a magnet (recall 1.00, precision 0.75). Full
+picture in [`confusion_matrix.png`](confusion_matrix.png).
 
-### Three wrong predictions analyzed
+### Three wrong predictions
 
 1. **id 31** — *"He glides past three players then passes it backwards. Most frustrating
    talented player I've ever watched, all the ability and none of the end product."*
-   **True `hot_take` → predicted `reaction`** (conf 0.34). *Boundary:* hot_take ↔ reaction.
-   *Why hard:* it's an evidence-free judgment dressed in emotional language
-   ("Most frustrating … I've ever watched"). The model keyed on the affect, not the fact
-   that it's an assertion. *Fix:* more `hot_take` examples that are emotionally worded but
-   argument-free, so the model stops treating strong feeling as a `reaction` tell.
+   True `hot_take` → predicted `reaction` (conf 0.34). It's an evidence-free opinion dressed
+   in emotional language, and the model keyed on the feeling instead of the missing
+   argument. Fix: more emotionally-worded-but-argument-free `hot_take` examples.
 
 2. **id 151** — *"LeBron of football lol but seriously Mbappe's playoff record against top
    seeds is below .500 if you actually check the knockout games."*
-   **True `analysis` → predicted `hot_take`** (conf 0.32). *Boundary:* analysis ↔ hot_take.
-   *Why hard:* a checkable stat ("below .500 … if you check") wrapped in flippant slang
-   ("lol", "LeBron of football"). This is genuinely borderline — a cherry-picked stat can
-   read as decorative — and the casual tone pushed the model to `hot_take`. *Fix:* this is
-   a real taxonomy grey area; sharper decision-rule examples (verifiable-but-snarky →
-   analysis) would help both the model and human annotators.
+   True `analysis` → predicted `hot_take` (conf 0.32). A checkable stat wrapped in slang
+   ("lol", "LeBron of football"). Genuinely borderline — a cherry-picked stat can read as
+   decorative — and the casual tone tipped it to `hot_take`. This one's a real grey area in
+   my own rubric, not just a model miss.
 
 3. **id 30** — *"I'm buzzing but also nervous, weird mix. Beating the leaders feels huge,
-   except … six games against the bottom half … where we've dropped most of our points …
-   This means nothing if we slip up."*
-   **True `mixed` → predicted `reaction`** (conf 0.37). *Boundary:* mixed ↔ reaction.
-   *Why hard:* it literally opens with emotion ("I'm buzzing but also nervous") before the
-   analytical caveat — and the model had ~6 `mixed` rows total to learn from. *Fix:* the
-   only real cure is **more `mixed` data**; one test example and a starved training class
-   can't teach a blend.
+   except … six games against the bottom half … This means nothing if we slip up."*
+   True `mixed` → predicted `reaction` (conf 0.37). It opens with emotion before the
+   analytical caveat, and the model had ~6 `mixed` rows total to learn from. The only real
+   fix is more `mixed` data.
 
-> All predicted confidences sat at **0.30–0.39** (4-class uniform is 0.25), and validation
-> macro-F1 **plateaued at 0.469 after epoch 2**. The model is *underfit*, not overfit — it
-> latched onto coarse surface cues (numbers → analysis, ALL-CAPS/emotion → reaction,
-> sweeping claims → hot_take) and never gained margin. That's expected with 77 examples.
+Side note: every confidence sat at **0.30–0.39** (uniform for 4 classes is 0.25) and val
+macro-F1 flatlined at **0.469 after epoch 2**. The model is underfit, not overfit — it
+grabbed the obvious cues (numbers → analysis, CAPS/emotion → reaction, sweeping claim →
+hot_take) and never got sharper. Expected with 77 rows.
 
 ### Sample classifications
 
@@ -231,71 +239,153 @@ boundaries the taxonomy itself flags as hardest. `reaction` is a magnet (perfect
 | 151 | "LeBron of football lol but seriously Mbappe's playoff record …" | hot_take | 0.32 | ❌ (analysis) |
 | 30 | "I'm buzzing but also nervous, weird mix. Beating the leaders feels huge …" | reaction | 0.37 | ❌ (mixed) |
 
-**One correct, explained:** id 155 (analysis ✅) — the post is a pure tactical breakdown
-(formation names, a mechanism, a claim about how opponents failed to press it) with no
-emotional language. Even underfit, the model reliably routes "numbers + tactics + no
-affect" to `analysis` (precision 1.00 for the class). That's the one distinction it
-learned cleanly.
+**One correct, explained:** id 155 (analysis ✅) is a pure tactical breakdown — formation
+names, a mechanism, a claim about how opponents failed to press it, zero emotion. Even
+underfit, the model reliably routes "numbers + tactics + no feeling" to `analysis`
+(precision 1.00 for the class). That's the one distinction it nailed.
 
-### Reflection — what the model captured vs. what I intended
+### Did it clear my own "good enough" bar?
 
-I intended a *discourse-quality* classifier: tell **structured evidence** (analysis) from
-**confident assertion** (hot_take) from **raw emotion** (reaction) from a **genuine blend**
-(mixed). The model captured the **easy three-quarters** of that intent — it separates
-analysis / hot_take / reaction by surface signals — but it captured none of the *hard*
-part. It can't tell an emotionally-phrased opinion (hot_take) from an emotional outburst
-(reaction), it wobbles when a verifiable stat is delivered flippantly, and it cannot
-represent `mixed` at all. In other words it learned **topic/tone shortcuts**, not the
-evidence-vs-assertion *reasoning* the taxonomy is actually about — and the zero-shot 70B
-model, which does reason, beat it. If I shipped this, the headline takeaway is: **use the
-Groq backend, not this fine-tune**, until I have far more data (especially `mixed`).
+In `planning.md` I wrote down what "good enough" meant *before* training. Checking it honestly:
+
+- ❌ **Beat the baseline on accuracy AND macro-F1** — no, lost both.
+- ❌ **macro-F1 ≥ 0.65** — no (0.637 on the test split, 0.578 over 5-fold).
+- ❌ **Every per-class F1 ≥ 0.50, no dead class** — no, `mixed` is 0.00.
+- ⚠️ **analysis vs hot_take confused < 30%** — the pair-swap rate is 17% (11 of those 66
+  posts), so technically it clears this one. But the leak is entirely one-directional —
+  38% of analysis posts (11/29) get called `hot_take` — so it's the next thing I'd fix.
+
+So by my own bar it fails on basically every count. Per the plan I wrote, that means the
+thing to fix is the **data and the labels, not the training setup**.
+
+### Reflection — what it learned vs what I wanted
+
+I wanted a discourse-*quality* classifier: tell structured evidence (analysis) from
+confident assertion (hot_take) from raw emotion (reaction) from a real blend (mixed). It
+learned the easy three-quarters — it sorts analysis/hot_take/reaction by surface signals —
+and none of the hard part. It can't tell an emotionally-phrased opinion from an emotional
+outburst, it wobbles when a real stat shows up in a flippant post, and it has no concept of
+`mixed` at all. It learned **topic and tone shortcuts**, not the evidence-vs-assertion
+*judgment* the taxonomy is actually about — which is exactly why the 70B model, which can
+reason, beat it. If I shipped this today the honest call is: **use the Groq backend, not my
+fine-tune**, until I have a lot more data (especially `mixed`).
 
 ### Reflection on the spec / taxonomy
 
-Building the labels exposed where the *spec itself* is hard, independent of any model:
+Labeling the data showed me where the *spec itself* is hard, regardless of any model:
 
-- **`mixed` is under-defined and under-represented.** My own labeling used it for only 9
-  of 111 rows because I held a high bar (emotion **and** a substantive argument, neither
-  dominant). The inter-annotator data (below) shows that bar is the single biggest source
-  of disagreement: every top human-vs-AI split — ids 82, 70, 49, 20, 184, 119 — is me
-  calling a post `reaction` where Claude/Codex called it `mixed`. The taxonomy needs a
-  sharper tie-breaker (e.g. "if the argument has a specific stat → mixed; if the critique
-  is a vibe → reaction") and a target minimum count per class.
-- **The analysis ↔ hot_take line depends on judging evidence, not detecting numbers.** id
-  151 shows a checkable stat can still feel like a hot take. The decision rule "evidence
-  that would stand if you removed the opinion framing → analysis" is right, but it asks
-  the annotator (and model) to *evaluate* the evidence, which a small model won't do.
-- **`skip` did its job.** 89/200 rows were pure news; excluding them kept the trainable
-  set clean. Keeping news in would have let the model cheat on style.
-- **What held up well:** the four-class core is genuinely useful and the decision-rule
-  ordering (verifiable evidence → analysis → … → mixed) matched how the strong annotators
-  actually behaved (human/Claude κ=0.90).
+- **`mixed` is under-defined and under-represented.** I only used it for 9 of 111 rows
+  because I hold a high bar (real emotion *and* a real argument, neither dominant). The
+  inter-annotator numbers below show that's the single biggest disagreement — every other
+  model reaches for `mixed` where I say `reaction`. The taxonomy needs a sharper
+  tie-breaker (e.g. "specific stat in the argument → mixed; vibe-level critique →
+  reaction") and a minimum count per class.
+- **analysis vs hot_take is about judging the evidence, not spotting numbers.** id 151
+  proves a checkable stat can still feel like a hot take. "Evidence that would stand if you
+  stripped the opinion framing → analysis" is the right rule, but it asks the reader to
+  *evaluate* the claim, which a small model just won't do.
+- **`skip` earned its keep.** 89/200 rows were pure news; dropping them stopped the model
+  from cheating on news-vs-take style.
+- **What held up:** the four-class core is genuinely useful, and the decision-rule order
+  matched how the strong annotators behaved in practice (human/Claude κ=0.90).
+
+## Stretch goals
+
+All four from `planning.md`. Here's where each landed.
+
+### 1. Inter-annotator reliability ✅
+
+I had **11 models** label the same 200 and scored each against my labels with Cohen's κ
+([`labels/compare_labels.py`](labels/compare_labels.py)):
+
+| annotator | agreement | Cohen's κ | strength |
+|---|---:|---:|---|
+| claude | 93.0% | 0.90 | almost perfect |
+| llama-3.3-70b | 92.0% | 0.89 | almost perfect |
+| deepseek-v3.1 | 91.0% | 0.88 | almost perfect |
+| gemini-2.5-flash | 91.0% | 0.88 | almost perfect |
+| deepseek-v3.2 | 90.0% | 0.86 | almost perfect |
+| gemma-4-31b | 89.5% | 0.85 | almost perfect |
+| codex | 88.5% | 0.84 | almost perfect |
+| gpt-oss-120b | 83.5% | 0.78 | substantial |
+| groq (llama-3.3-70b) | 76.0% | 0.67 | substantial |
+| copilot | 24.0% | 0.15 | slight |
+
+Two things jump out:
+
+- **The models agree with each other more than with me.** deepseek-v3.1 vs v3.2 is 98%
+  (κ0.97), llama vs deepseek 97%, claude vs gemini/gemma/llama all ~96% — but every one of
+  them only hits ~90% against my labels. They share a house style; I don't quite share it.
+- **That gap is one specific boundary.** On ids **82, 70, 49, 20, 184, 119, 113** I said
+  `reaction` and **every single model said `mixed`**. Same on id 55 (I said hot_take) and
+  id 35 (I said analysis). I keep `mixed` for a genuine emotion+argument tie; the models
+  grab it whenever a post has any of both, even when the feeling clearly dominates. That's
+  the whole disagreement, and it's the same boundary my fine-tune chokes on.
+- Copilot is the outlier (24%, κ0.15) — it answered `mixed` for nearly everything, a good
+  reminder not to trust any single annotator as truth. (MiniMax-M2.7 isn't here — SambaNova
+  returns HTTP 402 for it without a paid plan.)
+
+### 2. Confidence calibration ✅
+
+17 test rows is too few to say anything real about calibration, so I retrained with 5-fold
+cross-validation and collected an out-of-fold prediction + confidence for all 111 takes
+([`stretch_calibration.py`](stretch_calibration.py) → [`stretch_results.json`](stretch_results.json),
+[`reliability_diagram.png`](reliability_diagram.png)).
+
+The literal "does a 90%-confident prediction beat a 60% one?" question doesn't even apply:
+**the model never gets more confident than 0.45.** Everything lands in 0.30–0.45. So:
+
+- It's badly **underconfident** — ECE = **0.38**. When it says ~0.35 it's actually right
+  71% of the time; the 0.40–0.45 bin is right 100%. The reliability diagram is a wall of
+  points sitting way above the diagonal.
+- Confidence barely separates right from wrong: mean **0.364 when correct vs 0.346 when
+  wrong**.
+- But the *ranking* has a little signal — its most-confident third is right **84%** vs
+  **60%** for its least-confident third. So sorting by confidence is weakly useful even
+  though the raw number is meaningless. I would not show these confidences to a user as-is.
+
+### 3. Error-pattern analysis ✅
+
+Beyond the three individual misses, the 5-fold run over all 111 shows three *systematic*
+patterns (not one-offs):
+
+- **`mixed` is invisible.** Predicted **0 times out of 111**. All 9 true-`mixed` posts went
+  elsewhere — **7 to `reaction`, 2 to `hot_take`**. It's not that mixed is hard; the model
+  has no representation of it.
+- **analysis leaks into hot_take.** **11 of 29** analysis posts (38%) get called
+  `hot_take`. analysis recall is only 0.62, and hot_take precision drops to 0.65 because so
+  much gets dumped there. The model spots a "take" but can't judge whether the evidence
+  behind it is real (id 151 is the poster child).
+- **It falls apart on long posts.** Short posts (≤135 chars) → **93%** accuracy; long posts
+  → **55%**. The long ones are the analysis and the blends; the short ones are clean
+  reactions and one-line hot takes. So the "length" effect is really a nuance effect.
+
+### 4. Deployed interface ✅
+
+The Flask app ([`web/`](web/)) is the interface: a **Test** page that takes a new post and
+returns a label + confidence, and a **Train** page for labeling. It serves my fine-tuned
+model from `web/model/` when present and falls back to Groq zero-shot, then a keyword
+heuristic, so it always answers. Run it with `cd web && python app.py` (steps 2 & 5 above).
 
 ## AI usage
 
-- **Completing the human label set (with disclosure).** Of the 200 rows, **56 reused my
-  own labels** from an earlier curated-only pass (verbatim — they encode my personal
-  calibration). The remaining **144 were drafted by Claude applying this repo's taxonomy
-  and my demonstrated calibration**, cross-checked against three independent annotator
-  files, then written to `labels/human/labeled.csv` for review in the web Train page. One
-  stray `skip` (id 52, a textbook emotion+xG blend) was corrected to `mixed` and flagged
-  in `notes`. This is disclosed because the "human" file is the training ground truth.
-- **Four-way pre-labeling + reliability.** The 200 were independently labeled by Claude
-  Code, Codex, and Copilot (prompts in [`prompts/`](prompts/)) and by Groq
-  (`labels/label_with_groq.py`, which also emits `data/context_hints.csv`).
-  `labels/compare_labels.py` then measured agreement vs. my labels:
-
-  | pair | agreement | Cohen's κ | strength |
-  |---|---:|---:|---|
-  | human / claude | 93.0% | 0.90 | almost perfect |
-  | human / codex | 88.5% | 0.84 | almost perfect |
-  | human / groq | 76.0% | 0.67 | substantial |
-  | human / copilot | 24.0% | 0.15 | slight |
-
-  Copilot collapsed to predicting `mixed` for almost everything (κ=0.15) — a concrete
-  reminder that no single AI annotator is trustworthy as ground truth. The high-κ
-  annotators disagreed with me almost exclusively on the `reaction`↔`mixed` boundary,
-  which is exactly where the fine-tuned model also failed.
-- **Evaluation + failure analysis.** Claude wrote [`notebook_eval_local.py`](notebook_eval_local.py)
-  to reproduce the notebook's train/eval/baseline loop locally so this report contains
-  *observed* numbers, and helped analyze the wrong predictions and confusion structure above.
+- **Completing the human label set (disclosed).** Of the 200 rows, **56 reuse my own
+  labels** from an earlier curated-only pass, verbatim — they carry my personal calibration.
+  The other **144 were drafted by Claude applying this repo's taxonomy and my demonstrated
+  calibration**, cross-checked against the independent annotator files, then written to
+  `labels/human/labeled.csv` for review in the web Train page. I corrected one stray `skip`
+  (id 52, a clear emotion+xG blend) to `mixed` and flagged it in `notes`. I disclose this
+  because the "human" file is the training ground truth.
+- **11-way pre-labeling for reliability.** Claude Code / Codex / Copilot labeled from the
+  prompts in [`prompts/`](prompts/); Groq, 5 SambaNova models, and Gemini are automated
+  (`label_with_groq.py`, `label_with_sambanova.py`, `label_with_gemini.py` — the SambaNova
+  and Gemini labelers send one batched call per model to respect the shared key's limits).
+  `compare_labels.py` scores them all against my labels (table above).
+- **Label stress-testing.** Boundary posts between analysis/hot_take and reaction/mixed
+  were LLM-generated; the genuinely ambiguous ones live in the EDGE/curated set and
+  sharpened the decision rules.
+- **Evaluation, calibration + failure analysis.** Claude wrote
+  [`notebook_eval_local.py`](notebook_eval_local.py) and
+  [`stretch_calibration.py`](stretch_calibration.py) so this report runs on *observed*
+  numbers, and helped surface the systematic error patterns above — each verified by
+  re-reading the actual examples before writing it up.

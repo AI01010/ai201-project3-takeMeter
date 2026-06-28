@@ -1,201 +1,201 @@
 id,label,confidence,rationale
-1,skip,,missing from batch reply
-2,skip,,missing from batch reply
-3,skip,,missing from batch reply
-4,skip,,missing from batch reply
-5,skip,,missing from batch reply
-6,skip,,missing from batch reply
-7,skip,,missing from batch reply
-8,skip,,missing from batch reply
-9,skip,,missing from batch reply
-10,skip,,missing from batch reply
-11,skip,,missing from batch reply
-12,skip,,missing from batch reply
-13,skip,,missing from batch reply
-14,skip,,missing from batch reply
-15,skip,,missing from batch reply
-16,skip,,missing from batch reply
-17,skip,,missing from batch reply
-18,skip,,missing from batch reply
-19,skip,,missing from batch reply
-20,skip,,missing from batch reply
-21,skip,,missing from batch reply
-22,skip,,missing from batch reply
-23,skip,,missing from batch reply
-24,skip,,missing from batch reply
-25,skip,,missing from batch reply
-26,skip,,missing from batch reply
-27,skip,,missing from batch reply
-28,skip,,missing from batch reply
-29,skip,,missing from batch reply
-30,skip,,missing from batch reply
-31,skip,,missing from batch reply
-32,skip,,missing from batch reply
-33,skip,,missing from batch reply
-34,skip,,missing from batch reply
-35,skip,,missing from batch reply
-36,skip,,missing from batch reply
-37,skip,,missing from batch reply
-38,skip,,missing from batch reply
-39,skip,,missing from batch reply
-40,skip,,missing from batch reply
-41,skip,,missing from batch reply
-42,skip,,missing from batch reply
-43,skip,,missing from batch reply
-44,skip,,missing from batch reply
-45,skip,,missing from batch reply
-46,skip,,missing from batch reply
-47,skip,,missing from batch reply
-48,skip,,missing from batch reply
-49,skip,,missing from batch reply
-50,skip,,missing from batch reply
-51,skip,,missing from batch reply
-52,skip,,missing from batch reply
-53,skip,,missing from batch reply
-54,skip,,missing from batch reply
-55,skip,,missing from batch reply
-56,skip,,missing from batch reply
-57,skip,,missing from batch reply
-58,skip,,missing from batch reply
-59,skip,,missing from batch reply
-60,skip,,missing from batch reply
-61,skip,,missing from batch reply
-62,skip,,missing from batch reply
-63,skip,,missing from batch reply
-64,skip,,missing from batch reply
-65,skip,,missing from batch reply
-66,skip,,missing from batch reply
-67,skip,,missing from batch reply
-68,skip,,missing from batch reply
-69,skip,,missing from batch reply
-70,skip,,missing from batch reply
-71,skip,,missing from batch reply
-72,skip,,missing from batch reply
-73,skip,,missing from batch reply
-74,skip,,missing from batch reply
-75,skip,,missing from batch reply
-76,skip,,missing from batch reply
-77,skip,,missing from batch reply
-78,skip,,missing from batch reply
-79,skip,,missing from batch reply
-80,skip,,missing from batch reply
-81,skip,,missing from batch reply
-82,skip,,missing from batch reply
-83,skip,,missing from batch reply
-84,skip,,missing from batch reply
-85,skip,,missing from batch reply
-86,skip,,missing from batch reply
-87,skip,,missing from batch reply
-88,skip,,missing from batch reply
-89,skip,,missing from batch reply
-90,skip,,missing from batch reply
-91,skip,,missing from batch reply
-92,skip,,missing from batch reply
-93,skip,,missing from batch reply
-94,skip,,missing from batch reply
-95,skip,,missing from batch reply
-96,skip,,missing from batch reply
-97,skip,,missing from batch reply
-98,skip,,missing from batch reply
-99,skip,,missing from batch reply
-100,skip,,missing from batch reply
-101,skip,,missing from batch reply
-102,skip,,missing from batch reply
-103,skip,,missing from batch reply
-104,skip,,missing from batch reply
-105,skip,,missing from batch reply
-106,skip,,missing from batch reply
-107,skip,,missing from batch reply
-108,skip,,missing from batch reply
-109,skip,,missing from batch reply
-110,skip,,missing from batch reply
-111,skip,,missing from batch reply
-112,skip,,missing from batch reply
-113,skip,,missing from batch reply
-114,skip,,missing from batch reply
-115,skip,,missing from batch reply
-116,skip,,missing from batch reply
-117,skip,,missing from batch reply
-118,skip,,missing from batch reply
-119,skip,,missing from batch reply
-120,skip,,missing from batch reply
-121,skip,,missing from batch reply
-122,skip,,missing from batch reply
-123,skip,,missing from batch reply
-124,skip,,missing from batch reply
-125,skip,,missing from batch reply
-126,skip,,missing from batch reply
-127,skip,,missing from batch reply
-128,skip,,missing from batch reply
-129,skip,,missing from batch reply
-130,skip,,missing from batch reply
-131,skip,,missing from batch reply
-132,skip,,missing from batch reply
-133,skip,,missing from batch reply
-134,skip,,missing from batch reply
-135,skip,,missing from batch reply
-136,skip,,missing from batch reply
-137,skip,,missing from batch reply
-138,skip,,missing from batch reply
-139,skip,,missing from batch reply
-140,skip,,missing from batch reply
-141,skip,,missing from batch reply
-142,skip,,missing from batch reply
-143,skip,,missing from batch reply
-144,skip,,missing from batch reply
-145,skip,,missing from batch reply
-146,skip,,missing from batch reply
-147,skip,,missing from batch reply
-148,skip,,missing from batch reply
-149,skip,,missing from batch reply
-150,skip,,missing from batch reply
-151,skip,,missing from batch reply
-152,skip,,missing from batch reply
-153,skip,,missing from batch reply
-154,skip,,missing from batch reply
-155,skip,,missing from batch reply
-156,skip,,missing from batch reply
-157,skip,,missing from batch reply
-158,skip,,missing from batch reply
-159,skip,,missing from batch reply
-160,skip,,missing from batch reply
-161,skip,,missing from batch reply
-162,skip,,missing from batch reply
-163,skip,,missing from batch reply
-164,skip,,missing from batch reply
-165,skip,,missing from batch reply
-166,skip,,missing from batch reply
-167,skip,,missing from batch reply
-168,skip,,missing from batch reply
-169,skip,,missing from batch reply
-170,skip,,missing from batch reply
-171,skip,,missing from batch reply
-172,skip,,missing from batch reply
-173,skip,,missing from batch reply
-174,skip,,missing from batch reply
-175,skip,,missing from batch reply
-176,skip,,missing from batch reply
-177,skip,,missing from batch reply
-178,skip,,missing from batch reply
-179,skip,,missing from batch reply
-180,skip,,missing from batch reply
-181,skip,,missing from batch reply
-182,skip,,missing from batch reply
-183,skip,,missing from batch reply
-184,skip,,missing from batch reply
-185,skip,,missing from batch reply
-186,skip,,missing from batch reply
-187,skip,,missing from batch reply
-188,skip,,missing from batch reply
-189,skip,,missing from batch reply
-190,skip,,missing from batch reply
-191,skip,,missing from batch reply
-192,skip,,missing from batch reply
-193,skip,,missing from batch reply
-194,skip,,missing from batch reply
-195,skip,,missing from batch reply
-196,skip,,missing from batch reply
-197,skip,,missing from batch reply
-198,skip,,missing from batch reply
-199,skip,,missing from batch reply
-200,skip,,missing from batch reply
+1,skip,,one-shot batch (gpt-oss-120b)
+2,skip,,one-shot batch (gpt-oss-120b)
+3,hot_take,,one-shot batch (gpt-oss-120b)
+4,skip,,one-shot batch (gpt-oss-120b)
+5,analysis,,one-shot batch (gpt-oss-120b)
+6,skip,,one-shot batch (gpt-oss-120b)
+7,analysis,,one-shot batch (gpt-oss-120b)
+8,skip,,one-shot batch (gpt-oss-120b)
+9,skip,,one-shot batch (gpt-oss-120b)
+10,skip,,one-shot batch (gpt-oss-120b)
+11,mixed,,one-shot batch (gpt-oss-120b)
+12,analysis,,one-shot batch (gpt-oss-120b)
+13,hot_take,,one-shot batch (gpt-oss-120b)
+14,hot_take,,one-shot batch (gpt-oss-120b)
+15,skip,,one-shot batch (gpt-oss-120b)
+16,reaction,,one-shot batch (gpt-oss-120b)
+17,hot_take,,one-shot batch (gpt-oss-120b)
+18,hot_take,,one-shot batch (gpt-oss-120b)
+19,skip,,one-shot batch (gpt-oss-120b)
+20,mixed,,one-shot batch (gpt-oss-120b)
+21,analysis,,one-shot batch (gpt-oss-120b)
+22,skip,,one-shot batch (gpt-oss-120b)
+23,reaction,,one-shot batch (gpt-oss-120b)
+24,skip,,one-shot batch (gpt-oss-120b)
+25,hot_take,,one-shot batch (gpt-oss-120b)
+26,mixed,,one-shot batch (gpt-oss-120b)
+27,mixed,,one-shot batch (gpt-oss-120b)
+28,skip,,one-shot batch (gpt-oss-120b)
+29,skip,,one-shot batch (gpt-oss-120b)
+30,mixed,,one-shot batch (gpt-oss-120b)
+31,reaction,,one-shot batch (gpt-oss-120b)
+32,skip,,one-shot batch (gpt-oss-120b)
+33,analysis,,one-shot batch (gpt-oss-120b)
+34,skip,,one-shot batch (gpt-oss-120b)
+35,mixed,,one-shot batch (gpt-oss-120b)
+36,hot_take,,one-shot batch (gpt-oss-120b)
+37,analysis,,one-shot batch (gpt-oss-120b)
+38,reaction,,one-shot batch (gpt-oss-120b)
+39,skip,,one-shot batch (gpt-oss-120b)
+40,reaction,,one-shot batch (gpt-oss-120b)
+41,skip,,one-shot batch (gpt-oss-120b)
+42,hot_take,,one-shot batch (gpt-oss-120b)
+43,skip,,one-shot batch (gpt-oss-120b)
+44,analysis,,one-shot batch (gpt-oss-120b)
+45,reaction,,one-shot batch (gpt-oss-120b)
+46,skip,,one-shot batch (gpt-oss-120b)
+47,skip,,one-shot batch (gpt-oss-120b)
+48,analysis,,one-shot batch (gpt-oss-120b)
+49,mixed,,one-shot batch (gpt-oss-120b)
+50,skip,,one-shot batch (gpt-oss-120b)
+51,hot_take,,one-shot batch (gpt-oss-120b)
+52,mixed,,one-shot batch (gpt-oss-120b)
+53,reaction,,one-shot batch (gpt-oss-120b)
+54,analysis,,one-shot batch (gpt-oss-120b)
+55,mixed,,one-shot batch (gpt-oss-120b)
+56,skip,,one-shot batch (gpt-oss-120b)
+57,hot_take,,one-shot batch (gpt-oss-120b)
+58,skip,,one-shot batch (gpt-oss-120b)
+59,analysis,,one-shot batch (gpt-oss-120b)
+60,reaction,,one-shot batch (gpt-oss-120b)
+61,skip,,one-shot batch (gpt-oss-120b)
+62,skip,,one-shot batch (gpt-oss-120b)
+63,reaction,,one-shot batch (gpt-oss-120b)
+64,analysis,,one-shot batch (gpt-oss-120b)
+65,reaction,,one-shot batch (gpt-oss-120b)
+66,hot_take,,one-shot batch (gpt-oss-120b)
+67,skip,,one-shot batch (gpt-oss-120b)
+68,hot_take,,one-shot batch (gpt-oss-120b)
+69,hot_take,,one-shot batch (gpt-oss-120b)
+70,mixed,,one-shot batch (gpt-oss-120b)
+71,skip,,one-shot batch (gpt-oss-120b)
+72,reaction,,one-shot batch (gpt-oss-120b)
+73,skip,,one-shot batch (gpt-oss-120b)
+74,analysis,,one-shot batch (gpt-oss-120b)
+75,hot_take,,one-shot batch (gpt-oss-120b)
+76,skip,,one-shot batch (gpt-oss-120b)
+77,skip,,one-shot batch (gpt-oss-120b)
+78,reaction,,one-shot batch (gpt-oss-120b)
+79,hot_take,,one-shot batch (gpt-oss-120b)
+80,skip,,one-shot batch (gpt-oss-120b)
+81,skip,,one-shot batch (gpt-oss-120b)
+82,mixed,,one-shot batch (gpt-oss-120b)
+83,skip,,one-shot batch (gpt-oss-120b)
+84,skip,,one-shot batch (gpt-oss-120b)
+85,skip,,one-shot batch (gpt-oss-120b)
+86,reaction,,one-shot batch (gpt-oss-120b)
+87,reaction,,one-shot batch (gpt-oss-120b)
+88,analysis,,one-shot batch (gpt-oss-120b)
+89,hot_take,,one-shot batch (gpt-oss-120b)
+90,skip,,one-shot batch (gpt-oss-120b)
+91,skip,,one-shot batch (gpt-oss-120b)
+92,skip,,one-shot batch (gpt-oss-120b)
+93,analysis,,one-shot batch (gpt-oss-120b)
+94,hot_take,,one-shot batch (gpt-oss-120b)
+95,skip,,one-shot batch (gpt-oss-120b)
+96,hot_take,,one-shot batch (gpt-oss-120b)
+97,reaction,,one-shot batch (gpt-oss-120b)
+98,analysis,,one-shot batch (gpt-oss-120b)
+99,hot_take,,one-shot batch (gpt-oss-120b)
+100,hot_take,,one-shot batch (gpt-oss-120b)
+101,skip,,one-shot batch (gpt-oss-120b)
+102,skip,,one-shot batch (gpt-oss-120b)
+103,skip,,one-shot batch (gpt-oss-120b)
+104,skip,,one-shot batch (gpt-oss-120b)
+105,analysis,,one-shot batch (gpt-oss-120b)
+106,skip,,one-shot batch (gpt-oss-120b)
+107,analysis,,one-shot batch (gpt-oss-120b)
+108,hot_take,,one-shot batch (gpt-oss-120b)
+109,hot_take,,one-shot batch (gpt-oss-120b)
+110,skip,,one-shot batch (gpt-oss-120b)
+111,reaction,,one-shot batch (gpt-oss-120b)
+112,hot_take,,one-shot batch (gpt-oss-120b)
+113,mixed,,one-shot batch (gpt-oss-120b)
+114,skip,,one-shot batch (gpt-oss-120b)
+115,hot_take,,one-shot batch (gpt-oss-120b)
+116,skip,,one-shot batch (gpt-oss-120b)
+117,analysis,,one-shot batch (gpt-oss-120b)
+118,hot_take,,one-shot batch (gpt-oss-120b)
+119,mixed,,one-shot batch (gpt-oss-120b)
+120,analysis,,one-shot batch (gpt-oss-120b)
+121,skip,,one-shot batch (gpt-oss-120b)
+122,mixed,,one-shot batch (gpt-oss-120b)
+123,skip,,one-shot batch (gpt-oss-120b)
+124,analysis,,one-shot batch (gpt-oss-120b)
+125,hot_take,,one-shot batch (gpt-oss-120b)
+126,hot_take,,one-shot batch (gpt-oss-120b)
+127,analysis,,one-shot batch (gpt-oss-120b)
+128,reaction,,one-shot batch (gpt-oss-120b)
+129,analysis,,one-shot batch (gpt-oss-120b)
+130,analysis,,one-shot batch (gpt-oss-120b)
+131,skip,,one-shot batch (gpt-oss-120b)
+132,analysis,,one-shot batch (gpt-oss-120b)
+133,hot_take,,one-shot batch (gpt-oss-120b)
+134,reaction,,one-shot batch (gpt-oss-120b)
+135,skip,,one-shot batch (gpt-oss-120b)
+136,skip,,one-shot batch (gpt-oss-120b)
+137,reaction,,one-shot batch (gpt-oss-120b)
+138,analysis,,one-shot batch (gpt-oss-120b)
+139,reaction,,one-shot batch (gpt-oss-120b)
+140,analysis,,one-shot batch (gpt-oss-120b)
+141,skip,,one-shot batch (gpt-oss-120b)
+142,skip,,one-shot batch (gpt-oss-120b)
+143,skip,,one-shot batch (gpt-oss-120b)
+144,mixed,,one-shot batch (gpt-oss-120b)
+145,skip,,one-shot batch (gpt-oss-120b)
+146,analysis,,one-shot batch (gpt-oss-120b)
+147,skip,,one-shot batch (gpt-oss-120b)
+148,skip,,one-shot batch (gpt-oss-120b)
+149,analysis,,one-shot batch (gpt-oss-120b)
+150,analysis,,one-shot batch (gpt-oss-120b)
+151,hot_take,,one-shot batch (gpt-oss-120b)
+152,analysis,,one-shot batch (gpt-oss-120b)
+153,hot_take,,one-shot batch (gpt-oss-120b)
+154,analysis,,one-shot batch (gpt-oss-120b)
+155,analysis,,one-shot batch (gpt-oss-120b)
+156,hot_take,,one-shot batch (gpt-oss-120b)
+157,skip,,one-shot batch (gpt-oss-120b)
+158,skip,,one-shot batch (gpt-oss-120b)
+159,hot_take,,one-shot batch (gpt-oss-120b)
+160,analysis,,one-shot batch (gpt-oss-120b)
+161,hot_take,,one-shot batch (gpt-oss-120b)
+162,skip,,one-shot batch (gpt-oss-120b)
+163,hot_take,,one-shot batch (gpt-oss-120b)
+164,analysis,,one-shot batch (gpt-oss-120b)
+165,analysis,,one-shot batch (gpt-oss-120b)
+166,analysis,,one-shot batch (gpt-oss-120b)
+167,skip,,one-shot batch (gpt-oss-120b)
+168,skip,,one-shot batch (gpt-oss-120b)
+169,mixed,,one-shot batch (gpt-oss-120b)
+170,analysis,,one-shot batch (gpt-oss-120b)
+171,analysis,,one-shot batch (gpt-oss-120b)
+172,skip,,one-shot batch (gpt-oss-120b)
+173,hot_take,,one-shot batch (gpt-oss-120b)
+174,reaction,,one-shot batch (gpt-oss-120b)
+175,skip,,one-shot batch (gpt-oss-120b)
+176,skip,,one-shot batch (gpt-oss-120b)
+177,skip,,one-shot batch (gpt-oss-120b)
+178,reaction,,one-shot batch (gpt-oss-120b)
+179,hot_take,,one-shot batch (gpt-oss-120b)
+180,reaction,,one-shot batch (gpt-oss-120b)
+181,analysis,,one-shot batch (gpt-oss-120b)
+182,hot_take,,one-shot batch (gpt-oss-120b)
+183,reaction,,one-shot batch (gpt-oss-120b)
+184,mixed,,one-shot batch (gpt-oss-120b)
+185,skip,,one-shot batch (gpt-oss-120b)
+186,skip,,one-shot batch (gpt-oss-120b)
+187,analysis,,one-shot batch (gpt-oss-120b)
+188,hot_take,,one-shot batch (gpt-oss-120b)
+189,skip,,one-shot batch (gpt-oss-120b)
+190,skip,,one-shot batch (gpt-oss-120b)
+191,reaction,,one-shot batch (gpt-oss-120b)
+192,skip,,one-shot batch (gpt-oss-120b)
+193,reaction,,one-shot batch (gpt-oss-120b)
+194,hot_take,,one-shot batch (gpt-oss-120b)
+195,hot_take,,one-shot batch (gpt-oss-120b)
+196,reaction,,one-shot batch (gpt-oss-120b)
+197,mixed,,one-shot batch (gpt-oss-120b)
+198,mixed,,one-shot batch (gpt-oss-120b)
+199,reaction,,one-shot batch (gpt-oss-120b)
+200,analysis,,one-shot batch (gpt-oss-120b)
