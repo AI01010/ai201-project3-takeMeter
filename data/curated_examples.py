@@ -6,12 +6,18 @@ cases. They are written to *look and feel* like real football discourse
 (varied length, slang, emoji, all-caps, typos) WITHOUT being copied from any
 real user, so they are safe to commit.
 
-IMPORTANT: these are intentionally left UNLABELED. The `label` column in the
-generated CSV is blank on purpose — labeling them by hand (or with the three
-model prompts) is the actual project work. The grouping below is only to
-guarantee the set is balanced across the label space; it is NOT exported as a
-suggested label, so it cannot bias your annotation.
+Data-integrity note — the grouping is author-time scaffolding, not a label.
+The lists below (ANALYSIS, HOT_TAKE, …) exist only so the corpus stays balanced
+across the label space while it is being written. The intended label is the one
+thing that must NOT reach the annotation process: it is never written to the
+exported CSV (which carries only `text` + a data-source tag like `curated`/`rss`,
+with the `label` column empty), and `all_curated()` returns the posts
+DETERMINISTICALLY SHUFFLED so the by-label authoring order can't leak into
+whatever consumes them. Every post is judged on its own wording at annotation
+time — by a human in the web Train page, or by the model prompts in prompts/.
 """
+
+import random
 
 # Posts that *lean* analysis — specific, verifiable evidence / tactics / stats.
 ANALYSIS = [
@@ -249,8 +255,17 @@ EXTRA = [
 ]
 
 
-def all_curated():
-    """Return the full curated corpus as a flat list of unique strings."""
+def all_curated(shuffle=True, seed=1234):
+    """Return the full curated corpus as a flat list of unique strings.
+
+    The posts are concatenated by intended label only so this code is easy to
+    maintain — but that authoring order is a label hint, so by default the list
+    is shuffled with a fixed seed before it is returned. This strips the
+    grouping (and therefore any "expected label" signal) at the function
+    boundary, deterministically and independently of the caller, so nothing
+    downstream can re-derive the intended label from position. Pass
+    `shuffle=False` only for authoring/inspection, never for annotation.
+    """
     combined = ANALYSIS + HOT_TAKE + REACTION + MIXED + EDGE + EXTRA
     seen, out = set(), []
     for t in combined:
@@ -258,6 +273,8 @@ def all_curated():
         if key not in seen:
             seen.add(key)
             out.append(t.strip())
+    if shuffle:
+        random.Random(seed).shuffle(out)
     return out
 
 

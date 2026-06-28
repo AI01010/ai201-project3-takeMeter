@@ -1,0 +1,103 @@
+{
+  "model": "distilbert-base-uncased",
+  "run_environment": "local CPU mirror of the Colab notebook (same data/split/metrics)",
+  "epochs": 5,
+  "test_set_size": 17,
+  "label_map": {
+    "analysis": 0,
+    "hot_take": 1,
+    "reaction": 2,
+    "mixed": 3
+  },
+  "baseline": {
+    "accuracy": 0.9412,
+    "macro_f1": 0.953,
+    "per_class_f1": {
+      "analysis": 1.0,
+      "hot_take": 0.8889,
+      "reaction": 0.9231,
+      "mixed": 1.0
+    },
+    "parsed": 17,
+    "raw_preds": [
+      "reaction",
+      "reaction",
+      "analysis",
+      "analysis",
+      "hot_take",
+      "hot_take",
+      "mixed",
+      "reaction",
+      "analysis",
+      "reaction",
+      "reaction",
+      "hot_take",
+      "analysis",
+      "reaction",
+      "reaction",
+      "hot_take",
+      "analysis"
+    ]
+  },
+  "finetuned": {
+    "accuracy": 0.8235,
+    "macro_f1": 0.6365,
+    "per_class_f1": {
+      "analysis": 0.8889,
+      "hot_take": 0.8,
+      "reaction": 0.8571,
+      "mixed": 0.0
+    },
+    "per_class_precision": {
+      "analysis": 1.0,
+      "hot_take": 0.8,
+      "reaction": 0.75,
+      "mixed": 0.0
+    },
+    "per_class_recall": {
+      "analysis": 0.8,
+      "hot_take": 0.8,
+      "reaction": 1.0,
+      "mixed": 0.0
+    },
+    "per_class_support": {
+      "analysis": 5,
+      "hot_take": 5,
+      "reaction": 6,
+      "mixed": 1
+    }
+  },
+  "improvement_accuracy": -0.1177,
+  "confusion_matrix": [
+    [
+      4,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      4,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      6,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "analysis",
+    "hot_take",
+    "reaction",
+    "mixed"
+  ]
+}

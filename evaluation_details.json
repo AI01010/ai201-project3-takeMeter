@@ -1,0 +1,165 @@
+{
+  "wrong": [
+    {
+      "id": 31,
+      "text": "He glides past three players then passes it backwards. Most frustrating talented player I've ever watched, all the ability and none of the end product.",
+      "true": "hot_take",
+      "pred": "reaction",
+      "confidence": 0.343
+    },
+    {
+      "id": 151,
+      "text": "LeBron of football lol but seriously Mbappe's playoff record against top seeds is below .500 if you actually check the knockout games.",
+      "true": "analysis",
+      "pred": "hot_take",
+      "confidence": 0.315
+    },
+    {
+      "id": 30,
+      "text": "I'm buzzing but also nervous, weird mix. Beating the leaders feels huge, except we've now got six games against the bottom half and that's where we've dropped most of our points all year. This means nothing if we slip up there.",
+      "true": "mixed",
+      "pred": "reaction",
+      "confidence": 0.368
+    }
+  ],
+  "all_test": [
+    {
+      "id": 45,
+      "text": "the manager got sacked an hour after the final whistle and honestly I cheered. enough was enough. fresh start please.",
+      "true": "reaction",
+      "pred": "reaction",
+      "confidence": 0.391
+    },
+    {
+      "id": 31,
+      "text": "He glides past three players then passes it backwards. Most frustrating talented player I've ever watched, all the ability and none of the end product.",
+      "true": "hot_take",
+      "pred": "reaction",
+      "confidence": 0.343
+    },
+    {
+      "id": 155,
+      "text": "Watch how Leverkusen built their unbeaten run: Xabi alternates a 3-4-2-1 in possession and a 4-4-2 mid-block out of possession. The full-back-to-wing-back transition is the whole trick and almost nobody pressed it correctly.",
+      "true": "analysis",
+      "pred": "analysis",
+      "confidence": 0.307
+    },
+    {
+      "id": 151,
+      "text": "LeBron of football lol but seriously Mbappe's playoff record against top seeds is below .500 if you actually check the knockout games.",
+      "true": "analysis",
+      "pred": "hot_take",
+      "confidence": 0.315
+    },
+    {
+      "id": 51,
+      "text": "Possession stats are a scam invented to make boring teams feel clever. Nobody remembers who had the ball, they remember who scored.",
+      "true": "hot_take",
+      "pred": "hot_take",
+      "confidence": 0.353
+    },
+    {
+      "id": 108,
+      "text": "Honestly the women's game is growing faster than the men's and in ten years the gap in entertainment will be gone. Screenshot this.",
+      "true": "hot_take",
+      "pred": "hot_take",
+      "confidence": 0.308
+    },
+    {
+      "id": 30,
+      "text": "I'm buzzing but also nervous, weird mix. Beating the leaders feels huge, except we've now got six games against the bottom half and that's where we've dropped most of our points all year. This means nothing if we slip up there.",
+      "true": "mixed",
+      "pred": "reaction",
+      "confidence": 0.368
+    },
+    {
+      "id": 191,
+      "text": "THAT volley. I will be thinking about that volley on my deathbed. greatest goal I've ever seen live.",
+      "true": "reaction",
+      "pred": "reaction",
+      "confidence": 0.382
+    },
+    {
+      "id": 200,
+      "text": "Wing-back systems live and die by the No. 6's lateral coverage. When Chelsea ran a 3-4-3, the single pivot had to cover sideline to sideline; teams that beat them simply switched play fast enough that one player couldn't.",
+      "true": "analysis",
+      "pred": "analysis",
+      "confidence": 0.325
+    },
+    {
+      "id": 139,
+      "text": "I told myself I wouldn't get my hopes up and then we scored twice in five minutes and now look at me, fully invested again.",
+      "true": "reaction",
+      "pred": "reaction",
+      "confidence": 0.391
+    },
+    {
+      "id": 23,
+      "text": "watching the lads do a lap of honor after relegation hit different. I was sobbing. proud of them anyway.",
+      "true": "reaction",
+      "pred": "reaction",
+      "confidence": 0.382
+    },
+    {
+      "id": 156,
+      "text": "Vinicius is more flair than end product. Strip out the diving and he's an average winger with a good highlight reel.",
+      "true": "hot_take",
+      "pred": "hot_take",
+      "confidence": 0.338
+    },
+    {
+      "id": 152,
+      "text": "The reason United's midfield gets overrun is spacing, not effort. Casemiro and Bruno occupy the same vertical lane in build-up, so the pivot is effectively one player. Watch the wide CB always has to step into midfield to cover.",
+      "true": "analysis",
+      "pred": "analysis",
+      "confidence": 0.323
+    },
+    {
+      "id": 72,
+      "text": "94th minute equaliser and I have lost my entire mind, the dog is hiding, the neighbors are concerned, I regret nothing.",
+      "true": "reaction",
+      "pred": "reaction",
+      "confidence": 0.391
+    },
+    {
+      "id": 86,
+      "text": "I muted the stream after the third goal went in. couldn't take the commentary gloating. dark night to be a fan.",
+      "true": "reaction",
+      "pred": "reaction",
+      "confidence": 0.378
+    },
+    {
+      "id": 126,
+      "text": "Klopp is a vibes manager. Take away the crowd and the press conferences and his tactics are just 'run a lot'.",
+      "true": "hot_take",
+      "pred": "hot_take",
+      "confidence": 0.318
+    },
+    {
+      "id": 120,
+      "text": "VAR overturned 3 of their last 5 conceded penalties, but the underlying issue is the defensive midfielder stepping out and leaving the channel. Even when the calls go their way the structural hole is the same.",
+      "true": "analysis",
+      "pred": "analysis",
+      "confidence": 0.307
+    }
+  ],
+  "baseline_raw": [
+    "reaction",
+    "reaction",
+    "analysis",
+    "analysis",
+    "hot_take",
+    "hot_take",
+    "mixed",
+    "reaction",
+    "analysis",
+    "reaction",
+    "reaction",
+    "hot_take",
+    "analysis",
+    "reaction",
+    "reaction",
+    "hot_take",
+    "analysis"
+  ]
+}
