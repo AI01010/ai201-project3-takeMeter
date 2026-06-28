@@ -29,8 +29,19 @@ except Exception:
     pass
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ANNOTATORS = ["human", "claude", "codex", "copilot", "groq"]
 TRAIN_LABELS = ["analysis", "hot_take", "reaction", "mixed"]
+
+
+def discover_annotators() -> list[str]:
+    """Every labels/<name>/ folder that has a labeled.csv, human first (ground truth)."""
+    found = sorted(d for d in os.listdir(HERE)
+                   if os.path.isfile(os.path.join(HERE, d, "labeled.csv")))
+    if "human" in found:
+        found = ["human"] + [a for a in found if a != "human"]
+    return found
+
+
+ANNOTATORS = discover_annotators()
 
 
 def load(annotator: str) -> dict[str, str]:
@@ -105,7 +116,7 @@ def main() -> None:
         print(f"{a+'/'+b:<22}{len(pairs):>5}{agree*100:>8.1f}%{k:>8.2f}  {interpret(k)}")
 
     # Disagreement spotlight vs human (or first annotator if no human file)
-    ref = "human" if data["human"] else present[0]
+    ref = "human" if data.get("human") else present[0]
     others = [a for a in present if a != ref]
     if others:
         print()
